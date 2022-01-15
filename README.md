@@ -7,7 +7,7 @@ OLXClone is a platform where buyers can buy different categories of products (mi
 Team Members :
 
 1. Venkata Sai Samanth Kommi
-2. Konkala Venkata Maneesh Reddy
+2. Venkata Maneesh Reddy Konkala
 3. Satya Naga Akhilesh Irrinki
 4. Jayachandra Gunturu
 
