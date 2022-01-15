@@ -9,7 +9,7 @@ Team Members :
 1. Venkata Sai Samanth Kommi
 2. Venkata Maneesh Reddy Konkala
 3. Satya Naga Akhilesh Irrinki
-4. Jayachandra Gunturu
+4. Jayachandra Gallup
 
 Goal :
 
