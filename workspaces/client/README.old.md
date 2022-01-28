@@ -1,0 +1,1 @@
+This workspace contains client application.
