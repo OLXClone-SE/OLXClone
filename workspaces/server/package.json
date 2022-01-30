@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start" : "go run *.go"
+    "start": "go run .",
+    "hot" : "$(go env GOPATH)/bin/air"
   },
   "author": "",
   "license": "ISC"
