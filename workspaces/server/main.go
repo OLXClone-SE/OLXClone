@@ -1,7 +1,26 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"net/http"
+)
+
+type application struct {
+	port int64
+}
 
 func main() {
-	fmt.Println("Go Setup Done!!!!")
+
+	app := &application{
+		port: 4000,
+	}
+
+	server := http.Server{
+		Addr:    ":4000",
+		Handler: app.controller(),
+	}
+
+	server.ListenAndServe()
+
+	fmt.Println("Server is up!")
 }
