@@ -2,14 +2,23 @@ package utilities
 
 import (
 	"encoding/json"
+	"fmt"
+	"io/ioutil"
 	"net/http"
 )
 
-func GetJson(writer http.ResponseWriter, response interface{}) []byte {
+func ToJson(response interface{}) []byte {
 	json, err := json.MarshalIndent(response, "", "\t")
 	if err != nil {
-		writer.Write([]byte("json parse failed"))
 		return nil
 	}
 	return json
+}
+
+func ParseRequestBody(request *http.Request, ref interface{}) {
+	body, err := ioutil.ReadAll(request.Body)
+	if err != nil {
+		fmt.Println("body parse failed")
+	}
+	json.Unmarshal(body, &ref)
 }
