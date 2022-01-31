@@ -12,11 +12,11 @@ import (
 	gomail "gopkg.in/gomail.v2"
 )
 
-func SendMail(to string, subject string, body string) {
+func SendMail(to string, subject string, body string) bool {
 	err := godotenv.Load()
 	if err != nil {
 		fmt.Println("failed parsing environment variables")
-		return
+		return false
 	}
 	m := gomail.NewMessage()
 	m.SetHeader("From", os.Getenv(constants.FROM_MAIL))
@@ -27,8 +27,8 @@ func SendMail(to string, subject string, body string) {
 	d := gomail.NewDialer(os.Getenv(constants.SMTP_SERVER), socket, os.Getenv(constants.MAIL_ID), os.Getenv(constants.MAIL_PASS))
 	d.TLSConfig = &tls.Config{InsecureSkipVerify: true}
 	if err := d.DialAndSend(m); err != nil {
-		fmt.Println(err)
-		panic(err)
+		return false
 	}
 	log.Println("Mail Sent!")
+	return true
 }
