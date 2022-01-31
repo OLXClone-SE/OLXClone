@@ -4,12 +4,14 @@ import App from './App';
 import { render } from "react-dom";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import LoginComponent from './LoginComponent/LoginComponent';
+import SignUpComponent from './SignUpComponent/SignUpComponent';
 
 render(
   <BrowserRouter>
     <Routes>
       <Route path="/home" element={<App />} />
       <Route path="/" element={<LoginComponent />} />
+      <Route path="/signup" element={<SignUpComponent/>} />
     </Routes>
   </BrowserRouter>,
   document.getElementById('root')
