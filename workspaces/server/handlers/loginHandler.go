@@ -29,8 +29,8 @@ func createLoginResponse(approved bool) []byte {
 func verifyUser(reqBodyObject loginRequestBody) bool {
 	db := utilities.GetDBInstance()
 	userInfo := models.User{}
-	db.Table(userInfo.TableName()).Where(fmt.Sprintf("%s = ?", mailid), reqBodyObject.Mailid).Select(password).Scan(&userInfo)
-	return userInfo.Password == reqBodyObject.Password
+	res := db.Table(userInfo.TableName()).Where(fmt.Sprintf("%s = ?", mailid), reqBodyObject.Mailid).Select(password).Scan(&userInfo)
+	return (userInfo.Password == reqBodyObject.Password) && res.RowsAffected != 0
 }
 
 func LoginHandler(writer http.ResponseWriter, request *http.Request) {
