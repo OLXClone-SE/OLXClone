@@ -18,7 +18,7 @@ function Copyright(props: any) {
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
       <Link color="inherit" href="https://mui.com/">
-        Your Website
+          OLX Clone
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -26,17 +26,35 @@ function Copyright(props: any) {
   );
 }
 
+function validateEmail(email:any){
+  return (email)
+      .toLowerCase()
+      .match(
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      );
+}
+
+function validatePhoneNumber(phone:any){
+  return (phone)
+      .toLowerCase()
+      .match(/^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/
+      );
+}
 const theme = createTheme();
 
 export default function SignUp() {
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+
+    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    // eslint-disable-next-line no-console
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+    const email = data.get('email');
+    const phoneNumber = data.get('phone');
+    if(!validateEmail(email)){
+      alert("Please enter a valid email address");
+    }
+    if(!validatePhoneNumber(phoneNumber)){
+      alert("Please enter a valid phone number");
+    }
   };
 
   return (
@@ -57,13 +75,13 @@ export default function SignUp() {
           <Typography component="h1" variant="h5">
             Sign up
           </Typography>
-          <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+          <Box component="form"  onSubmit={handleSubmit} sx={{ mt: 3 }}>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField
+                  required = {true}
                   autoComplete="given-name"
                   name="firstName"
-                  required
                   fullWidth
                   id="firstName"
                   label="First Name"
@@ -72,7 +90,7 @@ export default function SignUp() {
               </Grid>
               <Grid item xs={12} sm={6}>
                 <TextField
-                  required
+                  required = {true}
                   fullWidth
                   id="lastName"
                   label="Last Name"
@@ -82,7 +100,7 @@ export default function SignUp() {
               </Grid>
               <Grid item xs={12}>
                 <TextField
-                  required
+                  required = {true}
                   fullWidth
                   id="email"
                   label="Email Address"
@@ -91,20 +109,24 @@ export default function SignUp() {
                 />
               </Grid>
               <Grid item xs={12}>
+              <TextField type ="number"
+                  required = {true}
+                  fullWidth
+                  id="phone"
+                  label="Phone Number"
+                  name="phone"
+                  autoComplete="phone"
+                />
+              </Grid>
+              <Grid item xs={12}>
                 <TextField
-                  required
+                  required = {true}
                   fullWidth
                   name="password"
                   label="Password"
                   type="password"
                   id="password"
                   autoComplete="new-password"
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <FormControlLabel
-                  control={<Checkbox value="allowExtraEmails" color="primary" />}
-                  label="I want to receive inspiration, marketing promotions and updates via email."
                 />
               </Grid>
             </Grid>
