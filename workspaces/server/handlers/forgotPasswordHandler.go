@@ -28,7 +28,10 @@ func sendOtp(reqBodyObject forgotPasswordRequestBody) bool {
 	var otp int
 	db := utilities.GetDBInstance()
 	userInfo := models.User{}
-	db.Table(userInfo.TableName()).Where(fmt.Sprintf("%s = ?", mailid), reqBodyObject.Mailid).Select("otp").Scan(&userInfo)
+	res := db.Table(userInfo.TableName()).Where(fmt.Sprintf("%s = ?", mailid), reqBodyObject.Mailid).Select("otp").Scan(&userInfo)
+	if res.RowsAffected == 0 {
+		return false
+	}
 	if userInfo.OTP != constants.OTP_DEFAULT {
 		if userInfo.OTP == 0 {
 			return false
