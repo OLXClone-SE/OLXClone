@@ -10,6 +10,6 @@ const OTP_DEFAULT = -1
 
 const Password 		= 	"password" //db password column
 const Mailid 		= 	"mailid"     //db mailid column
-const FirstName 	= 	"Maneesh"			//db firstName column
-const LastName 		= 	"Reddy"				//db LastName column
-const Mobile 		= 	"+13528702019" 		//db mobile number column
+const FirstName 	= 	"f_name"			//db firstName column
+const LastName 		= 	"l_name"				//db LastName column
+const Mobile 		= 	"phone" 		//db mobile number column

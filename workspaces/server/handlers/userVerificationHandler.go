@@ -30,7 +30,7 @@ func verifyMail(writer http.ResponseWriter, userVerificationReqBodyObject models
 		user := models.VerifyUser{}
 		user.Mailid = userVerificationReqBodyObject.Mailid
 		user.OTP = otp
-		res := db.Table(userInfo.TableName()).Create(&userInfo)
+		res := db.Table(user.TableName()).Create(&user)
 		success = res.RowsAffected != 0
 	}
 	mailVerificationObject := createMailVerificationResponse(success)
@@ -41,7 +41,6 @@ func verifyMail(writer http.ResponseWriter, userVerificationReqBodyObject models
 
 func UserVerificationHandler(writer http.ResponseWriter, request *http.Request) {
 	var userVerificationReqBodyObject models.VerifyUser
-	userVerificationReqBodyObject.OTP = constants.OTP_DEFAULT
 	utilities.ParseRequestBody(request, &userVerificationReqBodyObject)
 	verifyMail(writer, userVerificationReqBodyObject)
 }

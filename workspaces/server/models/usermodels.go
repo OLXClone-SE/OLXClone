@@ -2,8 +2,8 @@ package models
 
 type User struct {
 	Mailid   string `gorm:"primaryKey"`
-	FName    string
-	LName    string
+	Fname    string
+	Lname    string
 	Password string
 	OTP      int
 	Phone    string

@@ -2,6 +2,7 @@ package handlers
 
 import (
 	"net/http"
+	"server/constants"
 	"server/models"
 	"server/utilities"
 )
@@ -35,6 +36,7 @@ func SignupHandler(writer http.ResponseWriter, request *http.Request) {
 	utilities.ParseRequestBody(request, &signupReqBodyObject)
 	success := checkOTP(signupReqBodyObject)
 	if success {
+		signupReqBodyObject.OTP = constants.OTP_DEFAULT
 		success = addUser(signupReqBodyObject)
 		signupResponse := createSignupResponse(success)
 		if signupResponse != nil {
