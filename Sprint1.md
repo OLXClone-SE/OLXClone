@@ -31,89 +31,98 @@ API's Developed:
 Login API :
 ----------
 
-Method : POST
-URL : http://localhost:4000/login 
-Data contract : 
+Method : POST  
+URL : http://localhost:4000/login  
+Data contract :  
 
-Request Body :
+Request Body :  
 
-{
-    "mailid" : string,
-    "password" : string
-}
+{  
+    &nbsp; "mailid" : string,  
+    &nbsp; "password" : string  
+}  
 
-Response Body :
+Response Body :  
 
-{
-    "approved" : boolean
-}
+{  
+    &nbsp; "approved" : boolean  
+}  
 
-Description :: This is endpoint is used to login into the user's account using their credentials.
+Description ::  
+This is endpoint is used to login into the user's account using their credentials.
 
 Verifyuser API :
 ----------------
 
-Method : POST
-URL : http://localhost:4000/verifyuser
-Data contract : 
+Method : POST  
+URL : http://localhost:4000/verifyuser  
+Data contract :  
 
-Request Body :
+Request Body :  
 
-{
-    "mailid" : string,
-    "action" : string
-}
+{  
+    "mailid" : string,  
+    "action" : string  
+}  
 
-Response Body :
+Response Body :  
 
-{
-    "otpsent" : boolean
-}
+{  
+    &nbsp; "otpsent" : boolean  
+}  
 
-Description : This API will be used at two different places as of now, while signing up and while resetting password. So the action attribute in the request body changes accordingly. 
-This api will verify the user mailid is present in the database or not and will send an email to the user's registered mail id.
+Description ::  
+This API will be used at two different places as of now, while signing up and while resetting password. So the action attribute in the request body changes accordingly.  
+This api will verify the user mailid is present in the database or not and will send an email to the user's registered mail id.  
+"action" attribte will take any string among the following ["signup", "resetPassword"]  
 
 Reset Password API:
 ------------------
 
-Method : POST
-URL : http://localhost:4000/resetpassword
-Data contract : 
+Method : POST  
+URL : http://localhost:4000/resetpassword  
+Data contract :  
 
-Request Body :
+Request Body :  
 
-{
-    "mailid" : string,
-    "password" : string,
-    "otp" : int
-}
+{  
+    &nbsp; "mailid" : string,  
+    &nbsp; "password" : string,  
+    &nbsp; "otp" : int  
+}  
 
-Response Body :
+Response Body :  
 
-{
-    "approved" : boolean
-}
+{  
+    &nbsp; "approved" : boolean  
+}  
 
-Description :: This api will verify the entered otp is matching with the one sent to the user's mailid and resets the password to the new password in the request body.
+Description ::  
+This api will verify the entered otp is matching with the one sent to the user's mailid and resets the password to the new password in the request body.
 
 SignUp API:
 -----------
 
-Method : POST
-URL : http://localhost:4000/resetpassword
-Data contract : 
+Method : POST  
+URL : http://localhost:4000/resetpassword  
+Data contract :  
 
-Request Body :
+Request Body :  
 
-{
-    "mailid" : string,
-    "password" : string,
-    "otp" : int
-}
+{  
+    &nbsp; "mailid" : string,  
+    &nbsp; "password" : string,  
+    &nbsp; "fname" : string,  
+    &nbsp; "lname" : string,  
+    &nbsp; "phone" : string,  
+    &nbsp; "otp" : int  
+}  
 
-Response Body :
+Response Body :  
 
-{
-    "approved" : boolean
-}
+{  
+    &nbsp; "approved" : boolean  
+}  
 
+Description ::  
+This api will verify the entered otp is matching with the one sent to the user's mailid and creates a new record for the user with the details specified in the request body.
