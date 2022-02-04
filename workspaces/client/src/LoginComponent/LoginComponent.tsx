@@ -14,6 +14,8 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Logo from '../Logo.png';
 import axios from 'axios';
+import { useState } from 'react';
+
 
 function Copyright(props: any) {
   return (
@@ -30,15 +32,52 @@ function Copyright(props: any) {
 
 const theme = createTheme();
 
+function validateEmail(email:any){
+  return (email)
+      .toLowerCase()
+      .match(
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      );
+}
+
+function validatePassword(password:any){
+  if(password.indexOf(' ') !== -1)
+    return false;
+
+  return  true;
+}
+
 export default function SignIn() {
+  const initialValues = {emailFormatError:"",passwordFormatError:"",checkEmailError:false,checkPwdError:false};
+    const [signupData, setData] = useState(initialValues)
+    const styles = {
+      helper: {
+           color: 'red',
+           fontSize: '.8em',
+      }
+    }
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    // eslint-disable-next-line no-console
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+    const email = data.get('email');
+    const password = data.get('password');
+    let emailError = "";
+    let passwordError = "";
+    let checkEmail = false;
+    let checkPwd = false;
+    if(!validateEmail(email)){
+      emailError = "Please enter a valid email address";
+      checkEmail = true;
+    }
+
+    if(!validatePassword(password)){
+      passwordError =  "Please enter any character other than space"
+      checkPwd = true;
+    }
+
+    if(emailError!=null || password!=null)
+      setData({emailFormatError:emailError,passwordFormatError:passwordError,checkEmailError:checkEmail,checkPwdError:checkPwd});
   };
 
   return (
@@ -55,29 +94,35 @@ export default function SignIn() {
         >
           
           <Avatar sx={{ height: '70px', width: '170px' }} alt="OLX CLONE" src={Logo} />
-          <Typography component="h1" variant="h5"> 
-            Sign in
+          <Typography  variant="subtitle1"> 
+            Enter your Email Address and Password
           </Typography>
           <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1 }}>
             <TextField
               margin="normal"
-              required={true}
+              required
               fullWidth
               id="email"
               label="Email Address"
               name="email"
               autoComplete="email"
+              helperText= {signupData.emailFormatError}
+              FormHelperTextProps={{ style: styles.helper }}
+              error={signupData.checkEmailError}
               autoFocus
             />
             <TextField
               margin="normal"
-              required={true}
+              required
               fullWidth
               name="password"
               label="Password"
               type="password"
               id="password"
               autoComplete="current-password"
+              helperText= {signupData.passwordFormatError}
+              error={signupData.checkPwdError}
+              FormHelperTextProps={{ style: styles.helper }}
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
