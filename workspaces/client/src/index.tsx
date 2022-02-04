@@ -5,6 +5,7 @@ import { render } from "react-dom";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import LoginComponent from './LoginComponent/LoginComponent';
 import SignUpComponent from './SignUpComponent/SignUpComponent';
+import ForgotPasswordComponent from './ForgotPasswordComponent/ForgotPasswordComponent';
 
 render(
   <BrowserRouter>
@@ -12,6 +13,7 @@ render(
       <Route path="/home" element={<App />} />
       <Route path="/" element={<LoginComponent />} />
       <Route path="/signup" element={<SignUpComponent/>} />
+      <Route path="/forgotPwd" element={<ForgotPasswordComponent/>} />
     </Routes>
   </BrowserRouter>,
   document.getElementById('root')

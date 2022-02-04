@@ -4,7 +4,6 @@ import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
@@ -49,7 +48,7 @@ function validatePassword(password:any){
 
 export default function SignIn() {
   const initialValues = {emailFormatError:"",passwordFormatError:"",checkEmailError:false,checkPwdError:false};
-    const [signupData, setData] = useState(initialValues)
+    const [signinData, setData] = useState(initialValues)
     const styles = {
       helper: {
            color: 'red',
@@ -106,9 +105,9 @@ export default function SignIn() {
               label="Email Address"
               name="email"
               autoComplete="email"
-              helperText= {signupData.emailFormatError}
+              helperText= {signinData.emailFormatError}
               FormHelperTextProps={{ style: styles.helper }}
-              error={signupData.checkEmailError}
+              error={signinData.checkEmailError}
               autoFocus
             />
             <TextField
@@ -120,17 +119,14 @@ export default function SignIn() {
               type="password"
               id="password"
               autoComplete="current-password"
-              helperText= {signupData.passwordFormatError}
-              error={signupData.checkPwdError}
+              helperText= {signinData.passwordFormatError}
+              error={signinData.checkPwdError}
               FormHelperTextProps={{ style: styles.helper }}
-            />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
             />
             <Button
               type="submit"
               fullWidth
+              href="/home"
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
@@ -138,7 +134,7 @@ export default function SignIn() {
             </Button>
             <Grid container>
               <Grid item xs>
-                <Link href="#" variant="body2">
+                <Link href="/forgotPwd" variant="body2">
                   Forgot password?
                 </Link>
               </Grid>
