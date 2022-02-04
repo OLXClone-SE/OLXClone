@@ -13,3 +13,6 @@ const Mailid 		= 	"mailid"     //db mailid column
 const FirstName 	= 	"f_name"			//db firstName column
 const LastName 		= 	"l_name"				//db LastName column
 const Mobile 		= 	"phone" 		//db mobile number column
+
+const ACTION_SIGNUP = "signup"
+const ACTION_RESET_PASSWORD = "resetPassword"

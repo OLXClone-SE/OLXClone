@@ -12,6 +12,12 @@ type mailVerificationResponse struct {
 	OtpSent bool `json:"otpsent"`
 }
 
+type userVerificationRequestBody struct {
+	Mailid   string `json:"mailid"`
+	Password string `json:"password"`
+	Action 	 string	`json:"action"`
+}
+
 func createMailVerificationResponse(otpsent bool) []byte {
 	response := mailVerificationResponse{
 		OtpSent: otpsent,
@@ -20,12 +26,12 @@ func createMailVerificationResponse(otpsent bool) []byte {
 	return mailVerificationResponseObject
 }
 
-func verifyMail(writer http.ResponseWriter, userVerificationReqBodyObject models.VerifyUser) {
+func verifyMail(writer http.ResponseWriter, userVerificationReqBodyObject userVerificationRequestBody) {
 	db := utilities.GetDBInstance()
 	userInfo := models.User{}
 	res := db.Table(userInfo.TableName()).Where(fmt.Sprintf("%s = ?", constants.MAIL_ID), userVerificationReqBodyObject.Mailid).Select(constants.MAIL_ID).Scan(&userInfo)
 	success := false
-	if(res.RowsAffected == 0) {
+	if((res.RowsAffected == 0 && userVerificationReqBodyObject.Action == constants.ACTION_SIGNUP)  ||  (res.RowsAffected != 0 && userVerificationReqBodyObject.Action == constants.ACTION_RESET_PASSWORD)) {
 		otp := utilities.SendOtp(userVerificationReqBodyObject.Mailid)
 		user := models.VerifyUser{}
 		user.Mailid = userVerificationReqBodyObject.Mailid
@@ -40,7 +46,7 @@ func verifyMail(writer http.ResponseWriter, userVerificationReqBodyObject models
 }
 
 func UserVerificationHandler(writer http.ResponseWriter, request *http.Request) {
-	var userVerificationReqBodyObject models.VerifyUser
+	var userVerificationReqBodyObject userVerificationRequestBody
 	utilities.ParseRequestBody(request, &userVerificationReqBodyObject)
 	verifyMail(writer, userVerificationReqBodyObject)
 }
