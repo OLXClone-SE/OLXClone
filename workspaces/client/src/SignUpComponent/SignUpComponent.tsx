@@ -11,6 +11,7 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
+import Logo from '../Logo.png';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useState } from 'react';
 
@@ -51,7 +52,7 @@ function validatePassword(password:any){
 const theme = createTheme();
 
 export default function SignUp() {
-    const initialValues = {emailFormatError:"",phoneFormatError:"",passwordFormatError:""};
+    const initialValues = {emailFormatError:"",phoneFormatError:"",passwordFormatError:"",checkEmailError:false,checkPhoneError:false,checkPwdError:false};
     const [signupData, setData] = useState(initialValues)
     const styles = {
       helper: {
@@ -68,19 +69,25 @@ export default function SignUp() {
     let emailError = "";
     let phoneError = "";
     let passwordError = "";
+    let checkEmail = false;
+    let checkPhone = false;
+    let checkPwd = false;
     if(!validateEmail(email)){
       emailError = "Please enter a valid email address";
+      checkEmail=true;
     }
 
     if(!validatePhoneNumber(phoneNumber)){
       phoneError="Please enter a valid phone number";
+      checkPhone=true;
     }
 
     if(!validatePassword(password)){
       passwordError =  "Please enter any character other than space"
+      checkPwd=true;
     }
     if(emailError!=null || phoneError!=null || password!=null)
-      setData({emailFormatError:emailError,phoneFormatError:phoneError,passwordFormatError:passwordError});
+      setData({emailFormatError:emailError,phoneFormatError:phoneError,passwordFormatError:passwordError,checkEmailError:checkEmail,checkPhoneError:checkPhone,checkPwdError:checkPwd});
   };
 
   return (
@@ -95,12 +102,14 @@ export default function SignUp() {
             alignItems: 'center',
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-            <LockOutlinedIcon />
-          </Avatar>
+          <Avatar sx={{ height: '70px', width: '170px' }} alt="OLX CLONE" src={Logo} />
           <Typography component="h1" variant="h5">
             Sign up
           </Typography>
+          <Typography  variant="subtitle1"> 
+            Please enter your details to create an account.
+          </Typography>
+          
           <Box component="form"  onSubmit={handleSubmit} sx={{ mt: 3 }}>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
@@ -133,6 +142,7 @@ export default function SignUp() {
                   name="email"
                   autoComplete="email"
                   helperText= {signupData.emailFormatError}
+                  error={signupData.checkEmailError}
                   FormHelperTextProps={{ style: styles.helper }}
                 />
               </Grid>
@@ -145,6 +155,7 @@ export default function SignUp() {
                   name="phone"
                   autoComplete="phone"
                   helperText= {signupData.phoneFormatError}
+                  error={signupData.checkPhoneError}
                   FormHelperTextProps={{ style: styles.helper }}
                 />
               </Grid>
@@ -158,6 +169,7 @@ export default function SignUp() {
                   id="password"
                   autoComplete="new-password"
                   helperText= {signupData.passwordFormatError}
+                  error={signupData.checkPwdError}
                   FormHelperTextProps={{ style: styles.helper }}
                 />
               </Grid>
