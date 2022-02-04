@@ -24,28 +24,21 @@ func createforgotPasswordResponse(otpsent bool) []byte {
 	return loginResponse
 }
 
-func sendOtp(reqBodyObject forgotPasswordRequestBody) bool {
-	var otp int
+func updateUserOTP(mailid string, otp int) {
 	db := utilities.GetDBInstance()
 	userInfo := models.User{}
-	db.Table(userInfo.TableName()).Where(fmt.Sprintf("%s = ?", mailid), reqBodyObject.Mailid).Select("otp").Scan(&userInfo)
-	if userInfo.OTP != constants.OTP_DEFAULT {
-		if userInfo.OTP == 0 {
-			return false
-		}
-		otp = userInfo.OTP
-	} else {
-		otp = utilities.GenerateOtp()
-	}
-	db.Table(userInfo.TableName()).Where(fmt.Sprintf("%s = ?", mailid), reqBodyObject.Mailid).UpdateColumn("otp", otp)
-	success := utilities.SendMail(reqBodyObject.Mailid, "OTP for olxclone", fmt.Sprintf("Your OTP is %d", +otp))
-	return success
+	db.Table(userInfo.TableName()).Where(fmt.Sprintf("%s = ?", constants.MAIL_ID), mailid).UpdateColumn("otp", otp)
 }
 
 func ForgotPasswordHandler(writer http.ResponseWriter, request *http.Request) {
 	var reqBodyObject forgotPasswordRequestBody
 	utilities.ParseRequestBody(request, &reqBodyObject)
-	success := sendOtp(reqBodyObject)
+	otp := utilities.SendOtp(reqBodyObject.Mailid)
+	success := false
+	if(otp != -1) {
+		updateUserOTP(reqBodyObject.Mailid, otp)
+		success = true
+	}
 	loginResponse := createforgotPasswordResponse(success)
 	if loginResponse != nil {
 		utilities.WriteJsonResponse(writer, http.StatusOK, loginResponse)

@@ -3,12 +3,11 @@ package handlers
 import (
 	"fmt"
 	"net/http"
+	"server/constants"
 	"server/models"
 	"server/utilities"
 )
 
-const password = "password" //db password column
-const mailid = "mailid"     //db mailid column
 type loginResponse struct {
 	Approved bool `json:"approved"`
 }
@@ -29,7 +28,7 @@ func createLoginResponse(approved bool) []byte {
 func verifyUser(reqBodyObject loginRequestBody) bool {
 	db := utilities.GetDBInstance()
 	userInfo := models.User{}
-	db.Table(userInfo.TableName()).Where(fmt.Sprintf("%s = ?", mailid), reqBodyObject.Mailid).Select(password).Scan(&userInfo)
+	db.Table(userInfo.TableName()).Where(fmt.Sprintf("%s = ?", constants.MAIL_ID), reqBodyObject.Mailid).Select(constants.Password).Scan(&userInfo)
 	return userInfo.Password == reqBodyObject.Password
 }
 
