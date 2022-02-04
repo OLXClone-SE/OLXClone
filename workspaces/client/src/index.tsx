@@ -6,7 +6,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import LoginComponent from './LoginComponent/LoginComponent';
 import SignUpComponent from './SignUpComponent/SignUpComponent';
 import ForgotPasswordComponent from './ForgotPasswordComponent/ForgotPasswordComponent';
-import OTPComponent from './OTPComponent/OTPComponent';
+import ResetPasswordComponent from './ResetComponent/ResetPasswordComponent';
 
 render(
   <BrowserRouter>
@@ -15,7 +15,7 @@ render(
       <Route path="/" element={<LoginComponent />} />
       <Route path="/signup" element={<SignUpComponent/>} />
       <Route path="/forgotPwd" element={<ForgotPasswordComponent/>} />
-      <Route path="/otp" element={<OTPComponent/>} />
+      <Route path="/reset" element={<ResetPasswordComponent/>} />
     </Routes>
   </BrowserRouter>,
   document.getElementById('root')
