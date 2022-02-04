@@ -44,11 +44,11 @@ function validatePhoneNumber(phone:any){
 }
 
 function validatePassword(password:any){
-  if(password.indexOf(' ') !== -1)
-    return false;
-
-  return  true;
+    const regex =  /^[A-Za-z]\w{7,14}$/;
+    console.log(regex.test(password));
+    return regex.test(password)
 }
+
 const theme = createTheme();
 
 export default function SignUp() {
@@ -83,8 +83,8 @@ export default function SignUp() {
     }
 
     if(!validatePassword(password)){
-      passwordError =  "Please enter any character other than space"
       checkPwd=true;
+      passwordError =  "Use 8 or more characters with a mix of letters, numbers and symbols."
     }
     if(emailError!=null || phoneError!=null || password!=null)
       setData({emailFormatError:emailError,phoneFormatError:phoneError,passwordFormatError:passwordError,checkEmailError:checkEmail,checkPhoneError:checkPhone,checkPwdError:checkPwd});
