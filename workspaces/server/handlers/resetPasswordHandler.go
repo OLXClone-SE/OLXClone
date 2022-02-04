@@ -15,6 +15,7 @@ type resetPasswordResponse struct {
 type resetPasswordRequestBody struct {
 	Mailid   string `json:"mailid"`
 	Password string `json:"password"`
+	Otp 	 int	`json:"otp"`
 }
 
 func CreateResetPasswordResponse(approved bool) []byte {
@@ -35,7 +36,10 @@ func updateUserPassword(reqBodyObject resetPasswordRequestBody) bool {
 func ResetPasswordHandler(writer http.ResponseWriter, request *http.Request) {
 	var reqBodyObject resetPasswordRequestBody
 	utilities.ParseRequestBody(request, &reqBodyObject)
-	success := updateUserPassword(reqBodyObject)
+	success := utilities.VerifyOTP(reqBodyObject.Otp, reqBodyObject.Mailid)
+	if success {
+		success = updateUserPassword(reqBodyObject)
+	}
 	resetPasswordResponse := CreateResetPasswordResponse(success)
 	if resetPasswordResponse != nil {
 		utilities.WriteJsonResponse(writer, http.StatusOK, resetPasswordResponse)
