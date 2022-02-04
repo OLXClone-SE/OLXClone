@@ -29,23 +29,17 @@ function Copyright(props: any) {
 }
 
 function validateEmail(email:any){
-  return (email)
-      .toLowerCase()
-      .match(
-        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-      );
+  const regex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+  return regex.test(email);
 }
 
 function validatePhoneNumber(phone:any){
-  return (phone)
-      .toLowerCase()
-      .match(/^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/
-      );
+  const regex = /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/;
+  return regex.test(phone.toLowerCase());
 }
 
 function validatePassword(password:any){
-    const regex =  /^[A-Za-z]\w{7,14}$/;
-    console.log(regex.test(password));
+    const regex =  /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/;
     return regex.test(password)
 }
 
@@ -78,13 +72,13 @@ export default function SignUp() {
     }
 
     if(!validatePhoneNumber(phoneNumber)){
-      phoneError="Please enter a valid phone number";
+      phoneError="Please enter phone number in the following format +1 XXX-YYY-ZZZZ";
       checkPhone=true;
     }
 
     if(!validatePassword(password)){
       checkPwd=true;
-      passwordError =  "Use 8 or more characters with a mix of letters, numbers and symbols."
+      passwordError =  "Use 8 or more characters with a mix of capital and small letters, numbers and symbols like !@#$%^&*."
     }
     if(emailError!=null || phoneError!=null || password!=null)
       setData({emailFormatError:emailError,phoneFormatError:phoneError,passwordFormatError:passwordError,checkEmailError:checkEmail,checkPhoneError:checkPhone,checkPwdError:checkPwd});
