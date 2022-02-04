@@ -16,6 +16,11 @@ func GenerateOtp() int {
 	return otp
 }
 
+func DeleteRecord(mailid string, userInfo models.VerifyUser) {
+	db := GetDBInstance()
+	db.Table(userInfo.TableName()).Where(fmt.Sprintf("%s = ?", constants.MAIL_ID), mailid).Delete(&userInfo)
+}
+
 func SendOtp(mailid string) int {
 	var otp int
 	db := GetDBInstance()
@@ -26,14 +31,14 @@ func SendOtp(mailid string) int {
 	return otp
 }
 
-func VerifyOTP(otp int, mailid string) bool{
+func VerifyOTP(otp int, mailid string) bool {
 	db := GetDBInstance()
 	userInfo := models.VerifyUser{}
 	db.Table(userInfo.TableName()).Where(fmt.Sprintf("%s = ?", constants.MAIL_ID), mailid).Select("otp").Scan(&userInfo)
+	success := false
 	if userInfo.OTP == otp {
-		db.Table(userInfo.TableName()).Where(fmt.Sprintf("%s = ?", constants.MAIL_ID), mailid).Delete(&userInfo)
-		return true
+		success = true
 	}
-	return false
+	DeleteRecord(mailid, userInfo)
+	return success
 }
-
