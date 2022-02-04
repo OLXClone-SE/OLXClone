@@ -12,6 +12,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useState } from 'react';
 
 function Copyright(props: any) {
   return (
@@ -40,21 +41,46 @@ function validatePhoneNumber(phone:any){
       .match(/^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/
       );
 }
+
+function validatePassword(password:any){
+  if(password.indexOf(' ') !== -1)
+    return false;
+
+  return  true;
+}
 const theme = createTheme();
 
 export default function SignUp() {
-
+    const initialValues = {emailFormatError:"",phoneFormatError:"",passwordFormatError:""};
+    const [signupData, setData] = useState(initialValues)
+    const styles = {
+      helper: {
+           color: 'red',
+           fontSize: '.8em',
+      }
+    }
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const email = data.get('email');
     const phoneNumber = data.get('phone');
+    const password = data.get('password');
+    let emailError = "";
+    let phoneError = "";
+    let passwordError = "";
     if(!validateEmail(email)){
-      alert("Please enter a valid email address");
+      emailError = "Please enter a valid email address";
     }
+
     if(!validatePhoneNumber(phoneNumber)){
-      alert("Please enter a valid phone number");
+      phoneError="Please enter a valid phone number";
     }
+
+    if(!validatePassword(password)){
+      passwordError =  "Please enter any character other than space"
+    }
+    if(emailError!=null || phoneError!=null || password!=null)
+      setData({emailFormatError:emailError,phoneFormatError:phoneError,passwordFormatError:passwordError});
   };
 
   return (
@@ -106,16 +132,20 @@ export default function SignUp() {
                   label="Email Address"
                   name="email"
                   autoComplete="email"
+                  helperText= {signupData.emailFormatError}
+                  FormHelperTextProps={{ style: styles.helper }}
                 />
               </Grid>
               <Grid item xs={12}>
-              <TextField type ="number"
+              <TextField
                   required = {true}
                   fullWidth
                   id="phone"
                   label="Phone Number"
                   name="phone"
                   autoComplete="phone"
+                  helperText= {signupData.phoneFormatError}
+                  FormHelperTextProps={{ style: styles.helper }}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -127,6 +157,8 @@ export default function SignUp() {
                   type="password"
                   id="password"
                   autoComplete="new-password"
+                  helperText= {signupData.passwordFormatError}
+                  FormHelperTextProps={{ style: styles.helper }}
                 />
               </Grid>
             </Grid>
