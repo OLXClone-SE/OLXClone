@@ -38,9 +38,9 @@ func SignupHandler(writer http.ResponseWriter, request *http.Request) {
 	if success {
 		signupReqBodyObject.OTP = constants.OTP_DEFAULT
 		success = addUser(signupReqBodyObject)
-		signupResponse := createSignupResponse(success)
-		if signupResponse != nil {
-			utilities.WriteJsonResponse(writer, http.StatusOK, signupResponse)
-		}
+	}
+	signupResponse := createSignupResponse(success)
+	if signupResponse != nil {
+		utilities.WriteJsonResponse(writer, http.StatusOK, signupResponse)
 	}
 }
