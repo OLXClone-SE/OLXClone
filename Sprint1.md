@@ -104,7 +104,7 @@ SignUp API:
 -----------
 
 Method : POST  
-URL : http://localhost:4000/resetpassword  
+URL : http://localhost:4000/signup  
 Data contract :  
 
 Request Body :  
