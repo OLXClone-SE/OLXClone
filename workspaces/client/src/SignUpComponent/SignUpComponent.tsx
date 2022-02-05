@@ -46,7 +46,7 @@ function validatePassword(password:any){
 const theme = createTheme();
 
 export default function SignUp() {
-    const initialValues = {emailFormatError:"",phoneFormatError:"",passwordFormatError:"",checkEmailError:false,checkPhoneError:false,checkPwdError:false};
+    const initialValues = {emailFormatError:"",phoneFormatError:"",passwordFormatError:"",checkEmailError:false,checkPhoneError:false,checkPwdError:false,sigupDone:""};
     const [signupData, setData] = useState(initialValues)
     const styles = {
       helper: {
@@ -69,19 +69,22 @@ export default function SignUp() {
     if(!validateEmail(email)){
       emailError = "Please enter a valid email address";
       checkEmail=true;
+      setData({emailFormatError:emailError,phoneFormatError:phoneError,passwordFormatError:passwordError,checkEmailError:checkEmail,checkPhoneError:checkPhone,checkPwdError:checkPwd,sigupDone:"/signup"});
     }
 
     if(!validatePhoneNumber(phoneNumber)){
-      phoneError="Please enter phone number in the following format +1 XXX-YYY-ZZZZ";
+      phoneError="Please enter your valid 10 digit phone number";
       checkPhone=true;
+      setData({emailFormatError:emailError,phoneFormatError:phoneError,passwordFormatError:passwordError,checkEmailError:checkEmail,checkPhoneError:checkPhone,checkPwdError:checkPwd,sigupDone:"/signup"});
     }
 
     if(!validatePassword(password)){
       checkPwd=true;
       passwordError =  "Use 8 or more characters with a mix of capital and small letters, numbers and symbols like !@#$%^&*."
+      setData({emailFormatError:emailError,phoneFormatError:phoneError,passwordFormatError:passwordError,checkEmailError:checkEmail,checkPhoneError:checkPhone,checkPwdError:checkPwd,sigupDone:"/signup"});
     }
-    if(emailError!=null || phoneError!=null || password!=null)
-      setData({emailFormatError:emailError,phoneFormatError:phoneError,passwordFormatError:passwordError,checkEmailError:checkEmail,checkPhoneError:checkPhone,checkPwdError:checkPwd});
+    else
+      setData({emailFormatError:emailError,phoneFormatError:phoneError,passwordFormatError:passwordError,checkEmailError:checkEmail,checkPhoneError:checkPhone,checkPwdError:checkPwd,sigupDone:"/"});
   };
 
   return (
@@ -171,6 +174,7 @@ export default function SignUp() {
             <Button
               type="submit"
               fullWidth
+              href={signupData.sigupDone}
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
