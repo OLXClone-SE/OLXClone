@@ -75,7 +75,7 @@ export default function SignIn() {
       checkPwd = true;
     }
 
-    if(emailError!=null || password!=null)
+    if(emailError!=null || passwordError!=null)
       setData({emailFormatError:emailError,passwordFormatError:passwordError,checkEmailError:checkEmail,checkPwdError:checkPwd});
   };
 
