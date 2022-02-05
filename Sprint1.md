@@ -1,3 +1,9 @@
+Sprint 1 Demo:
+
+Backend : https://youtu.be/IX8Sffzvug4  
+
+Frontend : https://youtu.be/-lOGPK3od0k
+
 Sprint 1 Accomplishments:
 
 Backend ::
