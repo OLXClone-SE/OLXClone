@@ -29,6 +29,12 @@ function Copyright(props: any) {
   );
 }
 
+function mockLogin(email:any,password:any){
+  if(email === "test@gmail.com" && password === "Helloworld@123"){
+    return true;
+  }
+  return false;
+}
 const theme = createTheme();
 
 function validateEmail(email:any){
@@ -46,8 +52,22 @@ function validatePassword(password:any){
   return  true;
 }
 
+type initialValuesType =  {
+  emailFormatError: string,
+  passwordFormatError: string,
+  checkEmailError: boolean,
+  checkPwdError: boolean,
+  login: string
+}
+
 export default function SignIn() {
-  const initialValues = {emailFormatError:"",passwordFormatError:"",checkEmailError:false,checkPwdError:false};
+  const initialValues:initialValuesType = {
+      emailFormatError:"",
+      passwordFormatError:"",
+      checkEmailError:false,
+      checkPwdError:false,
+      login:""
+    };
     const [signinData, setData] = useState(initialValues)
     const styles = {
       helper: {
@@ -75,8 +95,14 @@ export default function SignIn() {
       checkPwd = true;
     }
 
-    if(emailError!=null || passwordError!=null)
-      setData({emailFormatError:emailError,passwordFormatError:passwordError,checkEmailError:checkEmail,checkPwdError:checkPwd});
+    if(emailError.length!==0 || passwordError.length!==0){
+      setData({emailFormatError:emailError,passwordFormatError:passwordError,checkEmailError:checkEmail,checkPwdError:checkPwd,login:""});
+    }
+    else{
+      mockLogin(email,password) ? setData({emailFormatError:emailError,passwordFormatError:passwordError,checkEmailError:checkEmail,checkPwdError:checkPwd,login:"/home"})
+      :      setData({emailFormatError:emailError,passwordFormatError:"please check credentials",checkEmailError:checkEmail,checkPwdError:checkPwd,login:""});
+    }
+      
   };
 
   return (
@@ -126,6 +152,7 @@ export default function SignIn() {
             <Button
               type="submit"
               fullWidth
+              href={signinData.login}
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
