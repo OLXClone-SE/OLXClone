@@ -16,6 +16,10 @@ import { validateEmail } from "../Utils/validators";
 import ErrorMessages from "../Utils/ErrorMessages";
 import { LoginData } from "../Types/LoginComponentTypes";
 import axios from "axios";
+import { login } from "../ReduxActions/LoginActions";
+import { updateUserLoginDataAction } from "../ReduxSlices/LoginSlice";
+import { useAppDispatch } from '../Store/hooks';
+import { useNavigate } from 'react-router-dom';
 
 const theme = createTheme();
 interface loginErrors {
@@ -35,6 +39,8 @@ export default function SignIn() {
 
   const [validationResult, setValidationResult] = useState(false);
   const [errors, setErrors] = useState<loginErrors>(loginErrors);
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const styles = {
     helper: {
@@ -50,15 +56,13 @@ export default function SignIn() {
       validationErrors.isEmailError = true;
     }
     else{
-      const url = `http://localhost:4000/login`;
-      axios.post(url,{...loginData})
-      .then((response)=>{
-        console.log(response.data.approved);
-      })
+      dispatch(updateUserLoginDataAction(loginData))
+      dispatch(login({...loginData})).then
+      navigate('/home');
+      }
       validationErrors.invalidCredentials = ErrorMessages.invalidCredentials;
       validationErrors.isInvalidCredentials = true;
-    }
-    setErrors({...validationErrors});
+      setErrors({...validationErrors});
   };
 
   const getLoginData = (data: FormData): LoginData => {
@@ -126,7 +130,6 @@ export default function SignIn() {
               type="submit"
               fullWidth
               variant="contained"
-              href = '/home'
               sx={{ mt: 3, mb: 2 }}
             >
               Sign In
