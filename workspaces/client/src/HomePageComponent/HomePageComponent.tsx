@@ -1,11 +1,23 @@
 import React from "react";
+import { Button, Container, Nav, Navbar, NavDropdown, Row } from 'react-bootstrap';
+import { NavBarComponent } from "../NavBarComponent/NavBarComponent";
 
-function HomePageComponent() {
-    return (
-      <div className="HomePageComponent">
-        <h1>Welcome to Home Page</h1>
-      </div>
-    );
-  }
-  
-  export default HomePageComponent;
+
+export function HomepageComponent() {
+    return <React.Fragment>
+    <style type="text/css">
+            {`
+    .cards-view {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        margin-top: 30px;
+        flex-flow: row wrap;
+    }
+    `}
+    </style>
+
+    </React.Fragment>
+}
+
+export default HomepageComponent;
