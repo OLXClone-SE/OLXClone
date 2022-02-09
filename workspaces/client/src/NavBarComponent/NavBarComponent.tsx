@@ -3,6 +3,17 @@ import { Navbar, Container, Nav, NavDropdown } from "react-bootstrap";
 
 export function NavBarComponent() {
     return <>
+        <style type="text/css">
+            {`
+    .color-nav {
+        background-color : rgba(47, 45, 45, 0.2);;
+        color : white;
+    }
+    .categories {
+        margin-left : 50px;
+    }
+    `}
+        </style>
         <Navbar className="color-nav" expand="lg">
             <Container className="justify-content-end">
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
