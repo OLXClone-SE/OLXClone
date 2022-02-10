@@ -176,7 +176,6 @@ export default function SignUp() {
               fullWidth
               href={signupData.sigupDone}
               variant="contained"
-              href="/"
               sx={{ mt: 3, mb: 2 }}
             >
               Sign Up

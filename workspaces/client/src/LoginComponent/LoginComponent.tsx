@@ -36,7 +36,6 @@ function mockLogin(email:any,password:any){
   return false;
 }
 const theme = createTheme();
-
 function validateEmail(email:any){
   return (email)
       .toLowerCase()
