@@ -16,7 +16,7 @@ import (
 var dbIns *gorm.DB = nil
 
 func GetDBConnectionString() string {
-	err := godotenv.Load()
+	err := godotenv.Load("../.env")
 	if err != nil {
 		log.Fatal("Error loading .env file")
 	}
@@ -43,7 +43,6 @@ func GetDBInstance() *gorm.DB {
 	postgresDB.SetMaxIdleConns(10)
 	postgresDB.SetMaxOpenConns(100)
 	postgresDB.SetConnMaxLifetime(time.Hour)
-	fmt.Println("db connection established")
 	dbIns = db
 	return dbIns
 }
