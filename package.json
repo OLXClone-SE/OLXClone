@@ -12,6 +12,7 @@
     },
     "dependencies": {
         "concurrently": "^7.0.0",
+        "react-bootstrap": "^2.1.2",
         "yarn": "^1.22.17"
     }
 }

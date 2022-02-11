@@ -1,7 +1,5 @@
 import React from "react";
-import { Button, Container, Nav, Navbar, NavDropdown, Row } from 'react-bootstrap';
 import { NavBarComponent } from "../NavBarComponent/NavBarComponent";
-
 
 export function HomepageComponent() {
     return <React.Fragment>
@@ -16,7 +14,7 @@ export function HomepageComponent() {
     }
     `}
     </style>
-
+    <NavBarComponent />
     </React.Fragment>
 }
 
