@@ -3,101 +3,99 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Logo from '../Logo.png';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useState } from 'react';
 import ErrorMessages from '../Utils/ErrorMessages';
-import ValidationRegex from '../Utils/ValidationRegex';
 import LoginComponent from '../LoginComponent/LoginComponent'
+import { Copyright } from '../CopyrightComponent/CopyrightComponent';
+import { validateEmail, validatePassword, validatePhoneNumber } from '../Utils/validators';
+import { SignupData } from '../Types/SignUpComponentTypes';
 
-function Copyright(props: any) {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-          OLX Clone
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
+interface formErrors {
+  emailFormatError: string;
+  phoneFormatError: string;
+  passwordFormatError: string;
+  checkEmailError: boolean;
+  checkPhoneError: boolean;
+  checkPwdError: boolean;
 }
-
-function validateEmail(email:any){
-  return ValidationRegex.emailRegex.test(email);
-}
-
-function validatePhoneNumber(phone:any){
-  return ValidationRegex.phoneRegex.test(phone.toLowerCase());
-}
-
-function validatePassword(password:any){
-    return ValidationRegex.passwordRegex.test(password)
-}
-
-const theme = createTheme();
 
 export default function SignUp() {
-    const initialValues = {
-      emailFormatError:ErrorMessages.noError,
-      phoneFormatError:ErrorMessages.noError,
-      passwordFormatError:ErrorMessages.noError,
-      checkEmailError:false,
-      checkPhoneError:false,
-      checkPwdError:false,
-      sigupDone:false,
-    };
-    const [signupData, setData] = useState(initialValues)
-    const styles = {
-      helper: {
-           color: 'red',
-           fontSize: '.8em',
-      }
+
+  const theme = createTheme();
+
+  const formErrors = {
+    emailFormatError: ErrorMessages.noError,
+    phoneFormatError: ErrorMessages.noError,
+    passwordFormatError: ErrorMessages.noError,
+    checkEmailError: false,
+    checkPhoneError: false,
+    checkPwdError: false,
+  };
+
+  const [validationResult, setValidationResult] = useState(false);
+  const [errors, setErrors] = useState<formErrors>(formErrors);
+
+  const validate = (signUpData: SignupData) => {
+    let validationErrors: formErrors = formErrors;
+    if (!validateEmail(signUpData.mailid)) {
+      validationErrors.emailFormatError = ErrorMessages.emailError;
+      validationErrors.checkEmailError = true;
     }
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    if (!validatePhoneNumber(signUpData.phone)) {
+      validationErrors.phoneFormatError = ErrorMessages.phoneError;
+      validationErrors.checkPhoneError = true;
+    }
+    if (!validatePassword(signUpData.password)) {
+      validationErrors.passwordFormatError = ErrorMessages.passwordError;
+      validationErrors.checkPwdError = true;
+    }
+    setErrors(validationErrors);
+    return validationErrors
+  }
+
+  const styles = {
+    helper: {
+      color: 'red',
+      fontSize: '.8em',
+    }
+  }
+
+  const getSignUpData = (data: FormData): SignupData => {
+    const formData = {} as SignupData;
+    formData.fname = data.get('fname');
+    formData.lname = data.get('lname');
+    formData.mailid = data.get('mailid');
+    formData.password = data.get('password');
+    formData.phone = data.get('phone');
+    formData.otp = -1; //default value
+    return formData;
+  }
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    const email = data.get('email');
-    const phoneNumber = data.get('phone');
-    const password = data.get('password');
-    let emailError = ErrorMessages.noError;
-    let phoneError = ErrorMessages.noError;
-    let passwordError = ErrorMessages.noError;
-    let checkEmail = false;
-    let checkPhone = false;
-    let checkPwd = false;
-    if(!validateEmail(email)){
-      emailError = ErrorMessages.emailError;
-      checkEmail=true;
+    const signUpData = getSignUpData(data);
+    console.log(signUpData);
+    validate(signUpData)
+    if (!errors.checkEmailError && !errors.checkPhoneError && !errors.checkPwdError) {
+      setValidationResult(true);
     }
-
-    if(!validatePhoneNumber(phoneNumber)){
-      phoneError=ErrorMessages.phoneError;
-      checkPhone=true;
-    }
-
-    if(!validatePassword(password)){
-      passwordError=ErrorMessages.passwordError;
-      checkPwd=true;
-    }
-    if(!checkEmail && !checkPhone && !checkPwd){
-      setData({emailFormatError:emailError,phoneFormatError:phoneError,passwordFormatError:passwordError,checkEmailError:checkEmail,checkPhoneError:checkPhone,checkPwdError:checkPwd,sigupDone:true});
-    }
-    else{
-      setData({emailFormatError:emailError,phoneFormatError:phoneError,passwordFormatError:passwordError,checkEmailError:checkEmail,checkPhoneError:checkPhone,checkPwdError:checkPwd,sigupDone:false});
+    else {
+      setValidationResult(false);
     }
   };
-  if(signupData.sigupDone){
-    return <LoginComponent/>
+
+  if (validationResult) {
+    return <LoginComponent />
   }
+
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
@@ -114,70 +112,70 @@ export default function SignUp() {
           <Typography component="h1" variant="h5">
             Sign up
           </Typography>
-          <Typography  variant="subtitle1"> 
+          <Typography variant="subtitle1">
             Please enter your details to create an account.
           </Typography>
-          
-          <Box component="form"  onSubmit={handleSubmit} sx={{ mt: 3 }}>
+
+          <Box component="form" onSubmit={handleSubmit} sx={{ mt: 3 }}>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField
-                  required = {true}
+                  required={true}
                   autoComplete="given-name"
-                  name="firstName"
+                  name="fname"
                   fullWidth
-                  id="firstName"
+                  id="fname"
                   label="First Name"
                   autoFocus
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
                 <TextField
-                  required = {true}
+                  required={true}
                   fullWidth
-                  id="lastName"
+                  id="lname"
                   label="Last Name"
-                  name="lastName"
+                  name="lname"
                   autoComplete="family-name"
                 />
               </Grid>
               <Grid item xs={12}>
                 <TextField
-                  required = {true}
+                  required={true}
                   fullWidth
-                  id="email"
+                  id="mailid"
                   label="Email Address"
-                  name="email"
-                  autoComplete="email"
-                  helperText= {signupData.emailFormatError}
-                  error={signupData.checkEmailError}
-                  FormHelperTextProps={{ style: styles.helper }}
-                />
-              </Grid>
-              <Grid item xs={12}>
-              <TextField
-                  required = {true}
-                  fullWidth
-                  id="phone"
-                  label="Phone Number"
-                  name="phone"
-                  autoComplete="phone"
-                  helperText= {signupData.phoneFormatError}
-                  error={signupData.checkPhoneError}
+                  name="mailid"
+                  autoComplete="mailid"
+                  helperText={errors.emailFormatError}
+                  error={errors.checkEmailError}
                   FormHelperTextProps={{ style: styles.helper }}
                 />
               </Grid>
               <Grid item xs={12}>
                 <TextField
-                  required = {true}
+                  required={true}
+                  fullWidth
+                  id="phone"
+                  label="Phone Number"
+                  name="phone"
+                  autoComplete="phone"
+                  helperText={errors.phoneFormatError}
+                  error={errors.checkPhoneError}
+                  FormHelperTextProps={{ style: styles.helper }}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required={true}
                   fullWidth
                   name="password"
                   label="Password"
                   type="password"
                   id="password"
                   autoComplete="new-password"
-                  helperText= {signupData.passwordFormatError}
-                  error={signupData.checkPwdError}
+                  helperText={errors.passwordFormatError}
+                  error={errors.checkPwdError}
                   FormHelperTextProps={{ style: styles.helper }}
                 />
               </Grid>
