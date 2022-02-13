@@ -31,3 +31,10 @@ func TestDeleteRecord(t *testing.T) {
         t.Errorf("record not deleted")
     }
 }
+
+func TestSendOtp(t *testing.T) {
+    got := SendOtp("newmail@gmail.com")
+    if got == 0 {
+        t.Errorf("not able to generate otp")
+    }
+}
