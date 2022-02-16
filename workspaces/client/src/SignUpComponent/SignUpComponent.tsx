@@ -14,6 +14,8 @@ import Container from '@mui/material/Container';
 import Logo from '../Logo.png';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useState } from 'react';
+import ErrorMessages from '../ErrorMessages';
+import ValidationRegex from '../ValidationRegex';
 
 function Copyright(props: any) {
   return (
@@ -29,24 +31,21 @@ function Copyright(props: any) {
 }
 
 function validateEmail(email:any){
-  const regex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-  return regex.test(email);
+  return ValidationRegex.emailRegex.test(email);
 }
 
 function validatePhoneNumber(phone:any){
-  const regex = /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/;
-  return regex.test(phone.toLowerCase());
+  return ValidationRegex.phoneRegex.test(phone.toLowerCase());
 }
 
 function validatePassword(password:any){
-    const regex =  /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/;
-    return regex.test(password)
+    return ValidationRegex.passwordRegex.test(password)
 }
 
 const theme = createTheme();
 
 export default function SignUp() {
-    const initialValues = {emailFormatError:"",phoneFormatError:"",passwordFormatError:"",checkEmailError:false,checkPhoneError:false,checkPwdError:false,sigupDone:""};
+    const initialValues = {emailFormatError:ErrorMessages.noError,phoneFormatError:ErrorMessages.noError,passwordFormatError:ErrorMessages.noError,checkEmailError:false,checkPhoneError:false,checkPwdError:false,sigupDone:""};
     const [signupData, setData] = useState(initialValues)
     const styles = {
       helper: {
@@ -60,27 +59,27 @@ export default function SignUp() {
     const email = data.get('email');
     const phoneNumber = data.get('phone');
     const password = data.get('password');
-    let emailError = "";
-    let phoneError = "";
-    let passwordError = "";
+    let emailError = ErrorMessages.noError;
+    let phoneError = ErrorMessages.noError;
+    let passwordError = ErrorMessages.noError;
     let checkEmail = false;
     let checkPhone = false;
     let checkPwd = false;
     if(!validateEmail(email)){
-      emailError = "Please enter a valid email address";
+      emailError = ErrorMessages.emailError;
       checkEmail=true;
       setData({emailFormatError:emailError,phoneFormatError:phoneError,passwordFormatError:passwordError,checkEmailError:checkEmail,checkPhoneError:checkPhone,checkPwdError:checkPwd,sigupDone:"/signup"});
     }
 
     if(!validatePhoneNumber(phoneNumber)){
-      phoneError="Please enter your valid 10 digit phone number";
+      phoneError=ErrorMessages.phoneError;
       checkPhone=true;
       setData({emailFormatError:emailError,phoneFormatError:phoneError,passwordFormatError:passwordError,checkEmailError:checkEmail,checkPhoneError:checkPhone,checkPwdError:checkPwd,sigupDone:"/signup"});
     }
 
     if(!validatePassword(password)){
+      passwordError=ErrorMessages.passwordError;
       checkPwd=true;
-      passwordError =  "Use 8 or more characters with a mix of capital and small letters, numbers and symbols like !@#$%^&*."
       setData({emailFormatError:emailError,phoneFormatError:phoneError,passwordFormatError:passwordError,checkEmailError:checkEmail,checkPhoneError:checkPhone,checkPwdError:checkPwd,sigupDone:"/signup"});
     }
     else
