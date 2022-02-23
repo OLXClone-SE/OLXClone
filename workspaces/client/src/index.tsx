@@ -5,19 +5,25 @@ import { render } from "react-dom";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import LoginComponent from './LoginComponent/LoginComponent';
 import SignUpComponent from './SignUpComponent/SignUpComponent';
+import { CounterComponent } from './CounterComponent/CounterComponent'
 import ForgotPasswordComponent from './ForgotPasswordComponent/ForgotPasswordComponent';
 import ResetPasswordComponent from './ResetComponent/ResetPasswordComponent';
+import { Provider } from 'react-redux';
+import { store } from './Store/store';
 
 render(
-  <BrowserRouter>
-    <Routes>
-      <Route path="/home" element={<App />} />
-      <Route path="/" element={<LoginComponent />} />
-      <Route path="/signup" element={<SignUpComponent/>} />
-      <Route path="/forgotPwd" element={<ForgotPasswordComponent/>} />
-      <Route path="/reset" element={<ResetPasswordComponent/>} />
-    </Routes>
-  </BrowserRouter>,
+  <Provider store={store}>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/home" element={<App />} />
+        <Route path="/" element={<LoginComponent />} />
+        <Route path="/signup" element={<SignUpComponent />} />
+        <Route path="/forgotPwd" element={<ForgotPasswordComponent />} />
+        <Route path="/reset" element={<ResetPasswordComponent />} />
+        <Route path="/redux" element={<CounterComponent />} />
+      </Routes>
+    </BrowserRouter>
+  </Provider>,
   document.getElementById('root')
 );
 
