@@ -8,6 +8,7 @@ import SignUpComponent from './SignUpComponent/SignUpComponent';
 import { CounterComponent } from './CounterComponent/CounterComponent'
 import ForgotPasswordComponent from './ForgotPasswordComponent/ForgotPasswordComponent';
 import ResetPasswordComponent from './ResetComponent/ResetPasswordComponent';
+import VerifyEmailComponent from './VerifyEmailComponent/VerifyEmailComponent';
 import { Provider } from 'react-redux';
 import { store } from './Store/store';
 
@@ -20,6 +21,7 @@ render(
         <Route path="/signup" element={<SignUpComponent />} />
         <Route path="/forgotPwd" element={<ForgotPasswordComponent />} />
         <Route path="/reset" element={<ResetPasswordComponent />} />
+        <Route path="/verify" element={<VerifyEmailComponent />} />
         <Route path="/redux" element={<CounterComponent />} />
       </Routes>
     </BrowserRouter>
