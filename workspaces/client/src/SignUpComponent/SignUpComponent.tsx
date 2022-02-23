@@ -14,8 +14,9 @@ import Container from '@mui/material/Container';
 import Logo from '../Logo.png';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useState } from 'react';
-import ErrorMessages from '../ErrorMessages';
-import ValidationRegex from '../ValidationRegex';
+import ErrorMessages from '../Utils/ErrorMessages';
+import ValidationRegex from '../Utils/ValidationRegex';
+import LoginComponent from '../LoginComponent/LoginComponent'
 
 function Copyright(props: any) {
   return (
@@ -45,7 +46,15 @@ function validatePassword(password:any){
 const theme = createTheme();
 
 export default function SignUp() {
-    const initialValues = {emailFormatError:ErrorMessages.noError,phoneFormatError:ErrorMessages.noError,passwordFormatError:ErrorMessages.noError,checkEmailError:false,checkPhoneError:false,checkPwdError:false,sigupDone:""};
+    const initialValues = {
+      emailFormatError:ErrorMessages.noError,
+      phoneFormatError:ErrorMessages.noError,
+      passwordFormatError:ErrorMessages.noError,
+      checkEmailError:false,
+      checkPhoneError:false,
+      checkPwdError:false,
+      sigupDone:false,
+    };
     const [signupData, setData] = useState(initialValues)
     const styles = {
       helper: {
@@ -68,24 +77,27 @@ export default function SignUp() {
     if(!validateEmail(email)){
       emailError = ErrorMessages.emailError;
       checkEmail=true;
-      setData({emailFormatError:emailError,phoneFormatError:phoneError,passwordFormatError:passwordError,checkEmailError:checkEmail,checkPhoneError:checkPhone,checkPwdError:checkPwd,sigupDone:"/signup"});
     }
 
     if(!validatePhoneNumber(phoneNumber)){
       phoneError=ErrorMessages.phoneError;
       checkPhone=true;
-      setData({emailFormatError:emailError,phoneFormatError:phoneError,passwordFormatError:passwordError,checkEmailError:checkEmail,checkPhoneError:checkPhone,checkPwdError:checkPwd,sigupDone:"/signup"});
     }
 
     if(!validatePassword(password)){
       passwordError=ErrorMessages.passwordError;
       checkPwd=true;
-      setData({emailFormatError:emailError,phoneFormatError:phoneError,passwordFormatError:passwordError,checkEmailError:checkEmail,checkPhoneError:checkPhone,checkPwdError:checkPwd,sigupDone:"/signup"});
     }
-    else
-      setData({emailFormatError:emailError,phoneFormatError:phoneError,passwordFormatError:passwordError,checkEmailError:checkEmail,checkPhoneError:checkPhone,checkPwdError:checkPwd,sigupDone:"/"});
+    if(!checkEmail && !checkPhone && !checkPwd){
+      setData({emailFormatError:emailError,phoneFormatError:phoneError,passwordFormatError:passwordError,checkEmailError:checkEmail,checkPhoneError:checkPhone,checkPwdError:checkPwd,sigupDone:true});
+    }
+    else{
+      setData({emailFormatError:emailError,phoneFormatError:phoneError,passwordFormatError:passwordError,checkEmailError:checkEmail,checkPhoneError:checkPhone,checkPwdError:checkPwd,sigupDone:false});
+    }
   };
-
+  if(signupData.sigupDone){
+    return <LoginComponent/>
+  }
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
@@ -173,7 +185,6 @@ export default function SignUp() {
             <Button
               type="submit"
               fullWidth
-              href={signupData.sigupDone}
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
