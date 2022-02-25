@@ -16,12 +16,6 @@ import { validateEmail } from "../Utils/validators";
 import ErrorMessages from "../Utils/ErrorMessages";
 import { LoginData } from "../Types/LoginComponentTypes";
 
-function mockLogin(email: any, password: any) {
-  if (email === "test@gmail.com" && password === "Helloworld@123") {
-    return true;
-  }
-  return false;
-}
 const theme = createTheme();
 interface loginErrors {
   emailFormatError: string;
@@ -53,13 +47,12 @@ export default function SignIn() {
     if (!validateEmail(loginData.mailid)) {
       validationErrors.emailFormatError = ErrorMessages.emailError;
       validationErrors.isEmailError = true;
-      setErrors({...validationErrors});
     }
     else{
       validationErrors.invalidCredentials = ErrorMessages.invalidCredentials;
       validationErrors.isInvalidCredentials = true;
-      setErrors({...validationErrors});
     }
+    setErrors({...validationErrors});
   };
 
   const getLoginData = (data: FormData): LoginData => {
