@@ -1,92 +1,72 @@
-import * as React from 'react';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import Logo from '../Logo.png';
-import { useState } from 'react';
-import { Copyright } from '../CopyrightComponent/CopyrightComponent';
+import * as React from "react";
+import Avatar from "@mui/material/Avatar";
+import Button from "@mui/material/Button";
+import CssBaseline from "@mui/material/CssBaseline";
+import TextField from "@mui/material/TextField";
+import Link from "@mui/material/Link";
+import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import Container from "@mui/material/Container";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import Logo from "../Logo.png";
+import { useState } from "react";
+import { Copyright } from "../CopyrightComponent/CopyrightComponent";
+import { validateEmail } from "../Utils/validators";
+import ErrorMessages from "../Utils/ErrorMessages";
+import { LoginData } from "../Types/LoginComponentTypes";
 
-
-function mockLogin(email:any,password:any){
-  if(email === "test@gmail.com" && password === "Helloworld@123"){
-    return true;
-  }
-  return false;
-}
 const theme = createTheme();
-function validateEmail(email:any){
-  return (email)
-      .toLowerCase()
-      .match(
-        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-      );
-}
-
-function validatePassword(password:any){
-  if(password.indexOf(' ') !== -1)
-    return false;
-
-  return  true;
-}
-
-type initialValuesType =  {
-  emailFormatError: string,
-  passwordFormatError: string,
-  checkEmailError: boolean,
-  checkPwdError: boolean,
-  login: string
+interface loginErrors {
+  emailFormatError: string;
+  invalidCredentials: string;
+  isEmailError: boolean;
+  isInvalidCredentials: boolean;
 }
 
 export default function SignIn() {
-  const initialValues:initialValuesType = {
-      emailFormatError:"",
-      passwordFormatError:"",
-      checkEmailError:false,
-      checkPwdError:false,
-      login:""
-    };
-    const [signinData, setData] = useState(initialValues)
-    const styles = {
-      helper: {
-           color: 'red',
-           fontSize: '.8em',
-      }
+  const loginErrors = {
+    emailFormatError: ErrorMessages.noError,
+    invalidCredentials: ErrorMessages.noError,
+    isEmailError: false,
+    isInvalidCredentials: false
+  };
+
+  const [validationResult, setValidationResult] = useState(false);
+  const [errors, setErrors] = useState<loginErrors>(loginErrors);
+
+  const styles = {
+    helper: {
+      color: "red",
+      fontSize: ".8em",
+    },
+  };
+
+  const validate = (loginData: LoginData) => {
+    let validationErrors: loginErrors = loginErrors;
+    if (!validateEmail(loginData.mailid)) {
+      validationErrors.emailFormatError = ErrorMessages.emailError;
+      validationErrors.isEmailError = true;
     }
+    else{
+      validationErrors.invalidCredentials = ErrorMessages.invalidCredentials;
+      validationErrors.isInvalidCredentials = true;
+    }
+    setErrors({...validationErrors});
+  };
+
+  const getLoginData = (data: FormData): LoginData => {
+    const formData = {} as LoginData;
+    formData.mailid = data.get("mailid");
+    formData.password = data.get("password");
+    return formData;
+  };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    const email = data.get('email');
-    const password = data.get('password');
-    let emailError = "";
-    let passwordError = "";
-    let checkEmail = false;
-    let checkPwd = false;
-    if(!validateEmail(email)){
-      emailError = "Please enter a valid email address";
-      checkEmail = true;
-    }
-
-    if(!validatePassword(password)){
-      passwordError =  "Please enter any character other than space"
-      checkPwd = true;
-    }
-
-    if(emailError.length!==0 || passwordError.length!==0){
-      setData({emailFormatError:emailError,passwordFormatError:passwordError,checkEmailError:checkEmail,checkPwdError:checkPwd,login:""});
-    }
-    else{
-      mockLogin(email,password) ? setData({emailFormatError:emailError,passwordFormatError:passwordError,checkEmailError:checkEmail,checkPwdError:checkPwd,login:"/home"})
-      :      setData({emailFormatError:emailError,passwordFormatError:"please check credentials",checkEmailError:checkEmail,checkPwdError:checkPwd,login:""});
-    }
-      
+    const loginData = getLoginData(data);
+    validate(loginData);
   };
 
   return (
@@ -96,14 +76,17 @@ export default function SignIn() {
         <Box
           sx={{
             marginTop: 8,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
           }}
         >
-          
-          <Avatar sx={{ height: '70px', width: '170px' }} alt="OLX CLONE" src={Logo} />
-          <Typography  variant="subtitle1"> 
+          <Avatar
+            sx={{ height: "70px", width: "170px" }}
+            alt="OLX CLONE"
+            src={Logo}
+          />
+          <Typography variant="subtitle1">
             Enter your Email Address and Password
           </Typography>
           <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1 }}>
@@ -111,13 +94,13 @@ export default function SignIn() {
               margin="normal"
               required
               fullWidth
-              id="email"
+              id="mailid"
               label="Email Address"
-              name="email"
+              name="mailid"
               autoComplete="email"
-              helperText= {signinData.emailFormatError}
+              helperText={errors.emailFormatError}
+              error={errors.isEmailError}
               FormHelperTextProps={{ style: styles.helper }}
-              error={signinData.checkEmailError}
               autoFocus
             />
             <TextField
@@ -129,14 +112,13 @@ export default function SignIn() {
               type="password"
               id="password"
               autoComplete="current-password"
-              helperText= {signinData.passwordFormatError}
-              error={signinData.checkPwdError}
+              helperText={errors.invalidCredentials}
+              error={errors.isInvalidCredentials}
               FormHelperTextProps={{ style: styles.helper }}
             />
             <Button
               type="submit"
               fullWidth
-              href={signinData.login}
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
