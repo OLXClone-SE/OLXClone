@@ -10,6 +10,7 @@ import ForgotPasswordComponent from './ForgotPasswordComponent/ForgotPasswordCom
 import ResetPasswordComponent from './ResetComponent/ResetPasswordComponent';
 import VerifyEmailComponent from './VerifyEmailComponent/VerifyEmailComponent';
 import HomePageComponent from './HomePageComponent/HomePageComponent';
+import ProfileComponent from './ProfileComponent/ProfileComponent';
 import { Provider } from 'react-redux';
 import { store } from './Store/store';
 
@@ -24,6 +25,7 @@ render(
         <Route path="/verify" element={<VerifyEmailComponent />} />
         <Route path="/redux" element={<CounterComponent />} />
         <Route path="/home" element={<HomePageComponent />} />
+        <Route path="/profile" element={<ProfileComponent />} />
       </Routes>
     </BrowserRouter>
   </Provider>,
