@@ -20,3 +20,14 @@ func TestParseRequestBody(t *testing.T) {
 		t.Errorf("parsed improperly")
 	}
 }
+
+func TestToJson(t *testing.T) {
+
+	testStructObj := testStruct{
+		TestVal: false,
+	}
+	got := ToJson(testStructObj)
+	if got == nil {
+		t.Errorf("not able to convert to json")
+	}
+}
