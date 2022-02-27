@@ -12,10 +12,13 @@ import Logo from '../Logo.png';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useState } from 'react';
 import ErrorMessages from '../Utils/ErrorMessages';
-import LoginComponent from '../LoginComponent/LoginComponent'
 import { Copyright } from '../CopyrightComponent/CopyrightComponent';
 import { validateEmail, validatePassword, validatePhoneNumber } from '../Utils/validators';
 import { SignupData } from '../Types/SignUpComponentTypes';
+import { useAppDispatch } from '../Store/hooks';
+import { updateUserSignupDataAction } from '../ReduxSlices/SignupSlice';
+import { sendOtpAction } from '../ReduxActions/VerifyUserActions';
+import { useNavigate } from 'react-router-dom';
 
 interface formErrors {
   emailFormatError: string;
@@ -29,7 +32,7 @@ interface formErrors {
 export default function SignUp() {
 
   const theme = createTheme();
-
+  const navigate = useNavigate();
   const formErrors = {
     emailFormatError: ErrorMessages.noError,
     phoneFormatError: ErrorMessages.noError,
@@ -41,6 +44,7 @@ export default function SignUp() {
 
   const [validationResult, setValidationResult] = useState(false);
   const [errors, setErrors] = useState<formErrors>(formErrors);
+  const dispatch = useAppDispatch();
 
   const validate = (signUpData: SignupData) => {
     let validationErrors: formErrors = formErrors;
@@ -56,8 +60,7 @@ export default function SignUp() {
       validationErrors.passwordFormatError = ErrorMessages.passwordError;
       validationErrors.checkPwdError = true;
     }
-    setErrors(validationErrors);
-    return validationErrors
+    setErrors({...validationErrors});
   }
 
   const styles = {
@@ -82,7 +85,6 @@ export default function SignUp() {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const signUpData = getSignUpData(data);
-    console.log(signUpData);
     validate(signUpData)
     if (!errors.checkEmailError && !errors.checkPhoneError && !errors.checkPwdError) {
       setValidationResult(true);
@@ -90,11 +92,12 @@ export default function SignUp() {
     else {
       setValidationResult(false);
     }
+    if (validationResult) {
+      dispatch(updateUserSignupDataAction(signUpData))
+      dispatch(sendOtpAction({mailid : signUpData.mailid, action: "signup"}));
+      navigate('/verify')
+    }
   };
-
-  if (validationResult) {
-    return <LoginComponent />
-  }
 
   return (
     <ThemeProvider theme={theme}>
@@ -146,7 +149,7 @@ export default function SignUp() {
                   id="mailid"
                   label="Email Address"
                   name="mailid"
-                  autoComplete="mailid"
+                  autoComplete="email"
                   helperText={errors.emailFormatError}
                   error={errors.checkEmailError}
                   FormHelperTextProps={{ style: styles.helper }}

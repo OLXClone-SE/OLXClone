@@ -4,5 +4,5 @@ export interface SignupData {
     fname: FormDataEntryValue | null,
     lname: FormDataEntryValue | null,
     phone: FormDataEntryValue | null,
-    otp?: number
+    otp?: FormDataEntryValue | null | number
 }
