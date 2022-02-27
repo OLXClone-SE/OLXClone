@@ -3,6 +3,8 @@ package main
 import (
 	"fmt"
 	"net/http"
+
+	"github.com/rs/cors"
 )
 
 type application struct {
@@ -17,7 +19,7 @@ func main() {
 
 	server := http.Server{
 		Addr:    ":4000",
-		Handler: app.controller(),
+		Handler: cors.AllowAll().Handler(app.controller()),
 	}
 
 	server.ListenAndServe()

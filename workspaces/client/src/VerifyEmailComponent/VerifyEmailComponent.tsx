@@ -3,7 +3,6 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
-import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
@@ -13,6 +12,10 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Copyright } from '../CopyrightComponent/CopyrightComponent';
+import { signUp } from "../ReduxActions/SignupActions";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../Store/store";
+import { SignupData } from "../Types/SignUpComponentTypes";
 
 
 
@@ -23,7 +26,12 @@ function validateOTP(otp: any) {
 }
 
 export default function ForgotPwd(props: any) {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+  const signUpData = useSelector((state: RootState) => state.SignUpSlice.signupData);
+  const appr= useSelector((state : RootState) => state.SignUpSlice.approved);
+  const otps= useSelector((state : RootState) => state.VerifyUserSlice.otpsent);
+  console.log(appr+" "+otps);
   const initialValues = {
     otpFormatError: "",
     checkOTPError: false,
@@ -42,7 +50,6 @@ export default function ForgotPwd(props: any) {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const otp = data.get("otp");
-    
     let otpError = "";
     let checkOTP = false;
     let isValid = false;
@@ -60,8 +67,15 @@ export default function ForgotPwd(props: any) {
         isValid: isValid,
       });
     }
-    if(isValid)
-        navigate("/");
+    console.log(otp)
+    if(isValid) {
+      console.log('otp is valid')
+      const newData:SignupData = {...signUpData, otp : Number(otp)}
+      console.log(newData)
+      dispatch(signUp(newData));
+      window.alert("registration successfull");
+      navigate("/");
+    }
   };
   return (
     <ThemeProvider theme={theme}>
