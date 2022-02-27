@@ -15,6 +15,7 @@ import { Copyright } from "../CopyrightComponent/CopyrightComponent";
 import { validateEmail } from "../Utils/validators";
 import ErrorMessages from "../Utils/ErrorMessages";
 import { LoginData } from "../Types/LoginComponentTypes";
+import axios from "axios";
 
 const theme = createTheme();
 interface loginErrors {
@@ -49,6 +50,12 @@ export default function SignIn() {
       validationErrors.isEmailError = true;
     }
     else{
+      const url = `http://localhost:4000/login`;
+      console.log(loginData.password);
+      axios.post(url,{...loginData})
+      .then((response)=>{
+        console.log(response.data.approved);
+      })
       validationErrors.invalidCredentials = ErrorMessages.invalidCredentials;
       validationErrors.isInvalidCredentials = true;
     }
