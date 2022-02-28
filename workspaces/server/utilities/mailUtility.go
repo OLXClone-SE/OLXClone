@@ -13,7 +13,7 @@ import (
 )
 
 func SendMail(to string, subject string, body string) bool {
-	err := godotenv.Load()
+	err := godotenv.Load("../.env")
 	if err != nil {
 		fmt.Println("failed parsing environment variables")
 		return false
