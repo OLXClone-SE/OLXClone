@@ -51,7 +51,6 @@ export default function SignIn() {
     }
     else{
       const url = `http://localhost:4000/login`;
-      console.log(loginData.password);
       axios.post(url,{...loginData})
       .then((response)=>{
         console.log(response.data.approved);
