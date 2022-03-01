@@ -77,6 +77,19 @@ export function ProfileComponent() {
           </div>
         </div>
       </div>
+      <Container>
+        {" "}
+        <div>
+          <h3>Your Products</h3>
+        </div>
+      </Container>
+      <Container title="wekjnfkjgbk" className="cards-view">
+        <CardComponent />
+        <CardComponent />
+        <CardComponent />
+        <CardComponent />
+        <CardComponent />
+      </Container>
     </React.Fragment>
   );
 }
