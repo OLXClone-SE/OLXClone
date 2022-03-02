@@ -20,7 +20,7 @@ export function CardComponent() {
                     Product
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                    Awesome Fantastic Mind Blowing Product
+                    This is a test product on display
                 </Typography>
             </CardContent>
             <CardActions>

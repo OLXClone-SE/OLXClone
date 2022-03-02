@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/alt-text */
+/* eslint-disable react/jsx-no-comment-textnodes */
 import React from "react";
 import { NavBarComponent } from "../NavBarComponent/NavBarComponent";
 import { Container } from "react-bootstrap";
@@ -41,17 +43,17 @@ export function ProfileComponent() {
               <div className="row mt-2">
                 <div className="col-md-6">
                   <label className="labels">First Name</label>
-                  <input type="text" className="form-control" value="" />
+                  <input type="text" className="form-control" value="" placeholder="Test first Name" />
                 </div>
                 <div className="col-md-6">
                   <label className="labels">Last Name</label>
-                  <input type="text" className="form-control" value="" />
+                  <input type="text" className="form-control" value="" placeholder="Test Last Name"/>
                 </div>
               </div>
               <div className="row mt-3">
                 <div className="col-md-12">
                   <label className="labels">Phone Number</label>
-                  <input type="text" className="form-control" value="" />
+                  <input type="text" className="form-control" value="" placeholder="9999999999"/>
                 </div>
               </div>
               <div className="row mt-3">
@@ -60,6 +62,7 @@ export function ProfileComponent() {
                   <input
                     type="text"
                     className="form-control"
+                    placeholder="testUser@mail.com"
                     value=""
                     disabled
                   />
