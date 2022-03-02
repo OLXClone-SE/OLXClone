@@ -4,6 +4,7 @@ import React from "react";
 import { NavBarComponent } from "../NavBarComponent/NavBarComponent";
 import { Container } from "react-bootstrap";
 import { CardComponent } from "../CardComponent/CardComponent";
+import { Copyright } from "../CopyrightComponent/CopyrightComponent";
 
 export function ProfileComponent() {
   return (
@@ -93,6 +94,7 @@ export function ProfileComponent() {
         <CardComponent />
         <CardComponent />
       </Container>
+      <Copyright sx={{ mt: 8, mb: 4 }} />
     </React.Fragment>
   );
 }

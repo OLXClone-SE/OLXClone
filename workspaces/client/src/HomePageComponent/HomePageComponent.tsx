@@ -10,6 +10,7 @@ import {
 } from "react-bootstrap";
 import { SearchComponent } from "../SearchComponent/SearchComponent";
 import { CardComponent } from "../CardComponent/CardComponent";
+import { Copyright } from "../CopyrightComponent/CopyrightComponent";
 
 export function HomepageComponent() {
   return (
@@ -45,6 +46,7 @@ export function HomepageComponent() {
         <CardComponent />
         <CardComponent />
       </Container>
+      <Copyright sx={{ mt: 8, mb: 4 }} />
     </React.Fragment>
   );
 }
