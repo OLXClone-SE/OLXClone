@@ -57,7 +57,7 @@ export default function SignIn() {
     }
     else{
       dispatch(updateUserLoginDataAction(loginData))
-      dispatch(login({...loginData})).then
+      dispatch(login({...loginData}))
       navigate('/home');
       }
       validationErrors.invalidCredentials = ErrorMessages.invalidCredentials;
