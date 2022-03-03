@@ -9,9 +9,16 @@ type User struct {
 	Phone    string
 }
 
+type UpdtableUserDetails struct {
+	Mailid string `gorm:"primaryKey"`
+	Fname  string
+	Lname  string
+	Phone  string
+}
+
 type VerifyUser struct {
-	Mailid   string `gorm:"primaryKey"`
-	OTP      int
+	Mailid string `gorm:"primaryKey"`
+	OTP    int
 }
 
 func (user *User) TableName() string {

@@ -14,5 +14,6 @@ func (app *application) controller() *httprouter.Router {
 	router.HandlerFunc(http.MethodPost, paths.RESET_PASSWORD, handlers.ResetPasswordHandler)
 	router.HandlerFunc(http.MethodPost, paths.SIGNUP, handlers.SignupHandler)
 	router.HandlerFunc(http.MethodPost, paths.USER_VERIFICATION, handlers.UserVerificationHandler)
+	router.HandlerFunc(http.MethodPost, paths.UPDATE_USER_DETAILS, handlers.UpdateUserDetailsHandler)
 	return router
 }
