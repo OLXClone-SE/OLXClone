@@ -42,7 +42,6 @@ export default function SignUp() {
     checkPwdError: false,
   };
 
-  const [validationResult, setValidationResult] = useState(false);
   const [errors, setErrors] = useState<formErrors>(formErrors);
   const dispatch = useAppDispatch();
 
@@ -60,7 +59,14 @@ export default function SignUp() {
       validationErrors.passwordFormatError = ErrorMessages.passwordError;
       validationErrors.checkPwdError = true;
     }
-    setErrors({...validationErrors});
+    if (!validationErrors.checkEmailError && !validationErrors.checkPhoneError && !validationErrors.checkPwdError) {
+      dispatch(updateUserSignupDataAction(signUpData))
+      dispatch(sendOtpAction({mailid : signUpData.mailid, action: "signup"}));
+      navigate('/verify')
+    }
+    else{
+      setErrors({...validationErrors});
+    }
   }
 
   const styles = {
@@ -86,17 +92,6 @@ export default function SignUp() {
     const data = new FormData(event.currentTarget);
     const signUpData = getSignUpData(data);
     validate(signUpData)
-    if (!errors.checkEmailError && !errors.checkPhoneError && !errors.checkPwdError) {
-      setValidationResult(true);
-    }
-    else {
-      setValidationResult(false);
-    }
-    if (validationResult) {
-      dispatch(updateUserSignupDataAction(signUpData))
-      dispatch(sendOtpAction({mailid : signUpData.mailid, action: "signup"}));
-      navigate('/verify')
-    }
   };
 
   return (
