@@ -27,6 +27,7 @@ func checkOTP(signupReqBodyObject models.User) bool {
 
 func addUser(signupReqBodyObject models.User) bool {
 	db := utilities.GetDBInstance()
+	signupReqBodyObject.Password = utilities.GetHashString(signupReqBodyObject.Password)
 	res := db.Table(signupReqBodyObject.TableName()).Create(&signupReqBodyObject)
 	return res.RowsAffected != 0
 }

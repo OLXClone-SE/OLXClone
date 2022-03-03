@@ -29,7 +29,7 @@ func verifyUser(reqBodyObject loginRequestBody) bool {
 	db := utilities.GetDBInstance()
 	userInfo := models.User{}
 	res := db.Table(userInfo.TableName()).Where(fmt.Sprintf("%s = ?", constants.MAIL_ID), reqBodyObject.Mailid).Select(constants.Password).Scan(&userInfo)
-	return userInfo.Password == reqBodyObject.Password && res.RowsAffected != 0
+	return res.RowsAffected != 0 && utilities.MatchHash(userInfo.Password, reqBodyObject.Password)
 }
 
 func LoginHandler(writer http.ResponseWriter, request *http.Request) {
