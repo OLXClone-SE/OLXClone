@@ -9,6 +9,7 @@ import { CounterComponent } from './CounterComponent/CounterComponent'
 import ForgotPasswordComponent from './ForgotPasswordComponent/ForgotPasswordComponent';
 import ResetPasswordComponent from './ResetComponent/ResetPasswordComponent';
 import VerifyEmailComponent from './VerifyEmailComponent/VerifyEmailComponent';
+import HomePageComponent from './HomePageComponent/HomePageComponent';
 import { Provider } from 'react-redux';
 import { store } from './Store/store';
 
@@ -16,13 +17,13 @@ render(
   <Provider store={store}>
     <BrowserRouter>
       <Routes>
-        <Route path="/home" element={<App />} />
         <Route path="/" element={<LoginComponent />} />
         <Route path="/signup" element={<SignUpComponent />} />
         <Route path="/forgotPwd" element={<ForgotPasswordComponent />} />
         <Route path="/reset" element={<ResetPasswordComponent />} />
         <Route path="/verify" element={<VerifyEmailComponent />} />
         <Route path="/redux" element={<CounterComponent />} />
+        <Route path="/home" element={<HomePageComponent />} />
       </Routes>
     </BrowserRouter>
   </Provider>,

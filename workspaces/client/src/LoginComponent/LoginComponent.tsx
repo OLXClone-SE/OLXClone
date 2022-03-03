@@ -126,6 +126,7 @@ export default function SignIn() {
               type="submit"
               fullWidth
               variant="contained"
+              href = '/home'
               sx={{ mt: 3, mb: 2 }}
             >
               Sign In
