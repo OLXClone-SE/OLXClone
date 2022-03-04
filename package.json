@@ -8,6 +8,7 @@
         "client": "yarn workspace client start",
         "server": "yarn workspace server start",
         "hot": "yarn workspace server hot",
+        "test":"concurrently --kill-others-on-fail \"yarn workspace client cypress open\" \"yarn client\" ",
         "start": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\""
     },
     "dependencies": {
