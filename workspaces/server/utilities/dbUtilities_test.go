@@ -10,3 +10,10 @@ func TestGetDBConnectionString(t *testing.T) {
 		t.Errorf("cannot connect to db")
 	}
 }
+
+func TestGetDBInstance(t *testing.T) {
+    got := GetDBInstance()
+    if got == nil {
+        t.Errorf("Cant create db instance")
+    }
+}
