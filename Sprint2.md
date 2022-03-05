@@ -1,5 +1,3 @@
-Sprint 2 Demo:
-
 Sprint 2 Accomplishments:
 
 Frontend ::
