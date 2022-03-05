@@ -33,6 +33,17 @@ Profile Page Component:
 -----------
 This component manages the user profile. User can navigate to this page from the home page. They can see and update all their details. They can also see the products that they are currently selling on the platform.
 
+Unit Test Cases:
+-----------
+We have used cypress for writing test cases on front end. They are as follows,
+- categorySpace: Tests whether the category drop down in the home page of user has specified number of categories or not.
+- dropDownEditProfile: Tests whether the user can reach the drop down on clicking profile after successful login
+- editProfileNavigation: Tests whether the user is being directed to the Edit Profile section after clicking edit profile option.
+- navigateSingup: Tests whether the user is able to navigate to sign up page after clicking for sign up on login page.
+- login: Tests whether the user is able to navigate to login page on browsing application url.
+- signupVerify: Tests whether user is redirected to verifying otp after completing successful registration.
+
+
 Backend ::
 ----------
 
@@ -75,11 +86,3 @@ unit test cases
 ---------------
 
 Unit test case are written in order to test the functionality of all the utility functions such as otp sender, mail sender, db connection, password hashers, json parsers etc. The overall acieved coverage is >82%.
-
-We have used cypress for writing test cases on front end. They are as follows,
-- categorySpace: Tests whether the category drop down in the home page of user has specified number of categories or not.
-- dropDownEditProfile: Tests whether the user can reach the drop down on clicking profile after successful login
-- editProfileNavigation: Tests whether the user is being directed to the Edit Profile section after clicking edit profile option.
-- navigateSingup: Tests whether the user is able to navigate to sign up page after clicking for sign up on login page.
-- login: Tests whether the user is able to navigate to login page on browsing application url.
-- signupVerify: Tests whether user is redirected to verifying otp after completing successful registration.
