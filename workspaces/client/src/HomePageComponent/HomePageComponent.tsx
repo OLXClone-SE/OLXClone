@@ -1,12 +1,7 @@
 import React from "react";
 import { NavBarComponent } from "../NavBarComponent/NavBarComponent";
 import {
-  Button,
   Container,
-  Nav,
-  Navbar,
-  NavDropdown,
-  Row,
 } from "react-bootstrap";
 import { SearchComponent } from "../SearchComponent/SearchComponent";
 import { CardComponent } from "../CardComponent/CardComponent";
