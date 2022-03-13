@@ -11,6 +11,7 @@ import ResetPasswordComponent from './ResetComponent/ResetPasswordComponent';
 import VerifyEmailComponent from './VerifyEmailComponent/VerifyEmailComponent';
 import HomePageComponent from './HomePageComponent/HomePageComponent';
 import ProfileComponent from './ProfileComponent/ProfileComponent';
+import DetailsComponent from './DetailsComponent/DetailsComponent';
 import { Provider } from 'react-redux';
 import { store } from './Store/store';
 
@@ -26,6 +27,7 @@ render(
         <Route path="/redux" element={<CounterComponent />} />
         <Route path="/home" element={<HomePageComponent />} />
         <Route path="/profile" element={<ProfileComponent />} />
+        <Route path="/details" element={<DetailsComponent />} />
       </Routes>
     </BrowserRouter>
   </Provider>,
