@@ -2,22 +2,16 @@ package utilities
 
 import (
 	"crypto/tls"
-	"fmt"
 	"log"
 	"os"
 	"server/constants"
 	"strconv"
 
-	"github.com/joho/godotenv"
+	_ "github.com/joho/godotenv/autoload"
 	gomail "gopkg.in/gomail.v2"
 )
 
 func SendMail(to string, subject string, body string) bool {
-	err := godotenv.Load("../.env")
-	if err != nil {
-		fmt.Println("failed parsing environment variables")
-		return false
-	}
 	m := gomail.NewMessage()
 	m.SetHeader("From", os.Getenv(constants.FROM_MAIL))
 	m.SetHeader("To", to)
