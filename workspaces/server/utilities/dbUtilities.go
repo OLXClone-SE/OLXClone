@@ -7,7 +7,7 @@ import (
 	"server/constants"
 	"time"
 
-	"github.com/joho/godotenv"
+	_ "github.com/joho/godotenv/autoload"
 	_ "github.com/lib/pq"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
@@ -16,10 +16,6 @@ import (
 var dbIns *gorm.DB = nil
 
 func GetDBConnectionString() string {
-	err := godotenv.Load("../.env")
-	if err != nil {
-		log.Fatal("Error loading .env file")
-	}
 	connStr := fmt.Sprintf("host=%s user=%s password=%s "+
 		"dbname=%s port=%s sslmode=disable",
 		os.Getenv(constants.DB_HOST), os.Getenv(constants.DB_USER), os.Getenv(constants.DB_PASS), os.Getenv(constants.DB_NAME), os.Getenv(constants.DB_PORT))
