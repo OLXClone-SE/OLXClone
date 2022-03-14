@@ -1,5 +1,10 @@
 Sprint 2 Accomplishments:
 
+*Sprint Board :*
+---------------
+
+https://github.com/orgs/OLXClone-SE/projects/1
+
 Frontend ::
 -----------
 
