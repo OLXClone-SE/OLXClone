@@ -1,32 +1,38 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { signUp } from '../ReduxActions/SignupActions'
+import { login } from '../ReduxActions/LoginActions';
 import { LoginData } from '../Types/LoginComponentTypes';
 
-interface SignUpState {
+interface LoginState {
     approved: boolean
-    loginData : LoginData
+    pending: boolean
+    loginData: LoginData
 }
 
-const initialState: SignUpState = {
+const initialState: LoginState = {
     approved: false,
-    loginData : {} as LoginData
+    pending: false,
+    loginData: {} as LoginData
 }
 
 export const LoginSlice = createSlice({
-    name: 'SignUpSlice',
+    name: 'LoginSlice',
     initialState,
-    reducers:{
-        updateUserLoginDataAction : (state, action: PayloadAction<LoginData>) => {
+    reducers: {
+        updateUserLoginDataAction: (state, action: PayloadAction<LoginData>) => {
             state.loginData = action.payload
         }
     },
     extraReducers: {
-        [signUp.fulfilled.toString()] : (state, action : PayloadAction<SignUpState>) => {
+        [login.fulfilled.toString()]: (state, action: PayloadAction<{ approved: boolean }>) => {
             state.approved = action.payload.approved;
+            state.pending = false;
+        },
+        [login.pending.toString()]: (state) => {
+            state.pending = true;
         }
     },
 })
 
-export const {updateUserLoginDataAction} = LoginSlice.actions
+export const { updateUserLoginDataAction } = LoginSlice.actions
 
 export default LoginSlice.reducer
