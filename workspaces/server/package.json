@@ -8,7 +8,7 @@
     "start": "go run .",
     "hot" : "$(go env GOPATH)/bin/air",
     "get" : "go get",
-    "test": "go test ./..."
+    "test": "concurrently --kill-others-on-fail \"yarn hot\" \"go test ./...\""
   },
   "author": "",
   "license": "ISC"
