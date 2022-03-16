@@ -29,9 +29,6 @@ export default function ForgotPwd(props: any) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const signUpData = useSelector((state: RootState) => state.SignUpSlice.signupData);
-  const appr= useSelector((state : RootState) => state.SignUpSlice.approved);
-  const otps= useSelector((state : RootState) => state.VerifyUserSlice.otpsent);
-  console.log(appr+" "+otps);
   const initialValues = {
     otpFormatError: "",
     checkOTPError: false,
@@ -46,7 +43,7 @@ export default function ForgotPwd(props: any) {
   };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    
+
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const otp = data.get("otp");
@@ -59,19 +56,16 @@ export default function ForgotPwd(props: any) {
     } else {
       isValid = true;
     }
-    console.log(otpError)
-    if (otpError != null){
+    if (otpError != null) {
       setData({
         otpFormatError: otpError,
         checkOTPError: checkOTP,
         isValid: isValid,
       });
     }
-    console.log(otp)
-    if(isValid) {
-      console.log('otp is valid')
-      const newData:SignupData = {...signUpData, otp : Number(otp)}
-      console.log(newData)
+
+    if (isValid) {
+      const newData: SignupData = { ...signUpData, otp: Number(otp) }
       dispatch(signUp(newData));
       window.alert("registration successfull");
       navigate("/");
