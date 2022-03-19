@@ -3,7 +3,6 @@ package handlers
 import (
 	"bytes"
 	"encoding/json"
-	"fmt"
 	"net/http"
 	"net/http/httptest"
 	"testing"
@@ -35,7 +34,6 @@ func TestLoginHandler(t *testing.T) {
 	expected := true;
 	var response loginResponse;
 	json.Unmarshal(rr.Body.Bytes(), &response);
-	fmt.Println(rr.Body.String())
 	if response.Approved != expected {
 		t.Errorf("handler returned unexpected body: got %v want %v",
 			response.Approved, expected)
