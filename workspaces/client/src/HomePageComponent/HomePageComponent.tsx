@@ -14,7 +14,7 @@ import LoaderComponent from "../LoaderComponent/LoaderComponent";
 export function HomepageComponent() {
 
   const { approved, pending } = useAppSelector((root: RootState) => root.LoginSlice);
-  console.log("pebdinbg ", pending)
+
   return (
     approved ?
       <React.Fragment>
