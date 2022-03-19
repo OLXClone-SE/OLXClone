@@ -26,7 +26,7 @@
 
 import {generateName,generatePassword} from './utils';
 
-Cypress.Commands.add('login', (username, password) => {
+Cypress.Commands.add('login', () => {
     cy.visit('localhost:3000');
     cy.get('input[name="mailid"]').type(generateName()+'@gmail.com');
     cy.get('input[name="password"]').type(generatePassword());
