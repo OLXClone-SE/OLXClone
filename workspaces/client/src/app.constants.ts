@@ -6,5 +6,6 @@ export const urls = {
     verifyUser: "/verifyuser",
     fetchUserProfile: "/getUserDetails",
     updateUserProfile: "/updateUserDetails",
-    getProducts: "/getProducts"
+    getProducts: "/getProducts",
+    saveProduct: "/saveProduct"
 }
