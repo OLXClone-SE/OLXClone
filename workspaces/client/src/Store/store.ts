@@ -3,6 +3,7 @@ import counterReducer from '../ReduxSlices/CounterSlice'
 import SignupSlice from '../ReduxSlices/SignupSlice'
 import LoginSlice from '../ReduxSlices/LoginSlice'
 import VerifyUserSlice from '../ReduxSlices/VerifyUserSlice'
+import UserProfileSlice from "../ReduxSlices/UserProfileSlice"
 
 
 export const store = configureStore({
@@ -11,6 +12,7 @@ export const store = configureStore({
     "SignUpSlice": SignupSlice,
     "LoginSlice": LoginSlice,
     "VerifyUserSlice": VerifyUserSlice,
+    "UserProfileSlice": UserProfileSlice,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
