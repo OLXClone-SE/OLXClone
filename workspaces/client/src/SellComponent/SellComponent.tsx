@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import Typography from '@mui/material/Typography';
 import { Copyright } from "../CopyrightComponent/CopyrightComponent";
 import { UserProduct } from "../Types/user";
+import { updateProductDetails } from "../ReduxSlices/SellSlice";
 import { fetchUserProfile } from "../ReduxActions/UserProfileActions";
 import { useAppSelector } from "../Store/hooks";
 import { RootState } from "../Store/store";
@@ -51,6 +52,7 @@ export function SellComponent() {
             mailid
         }
         console.log(userProduct)
+        dispatch(updateProductDetails({ userProduct }))
     }
 
     return (
