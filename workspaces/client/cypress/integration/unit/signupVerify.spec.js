@@ -2,7 +2,7 @@ import {generateName,generatePassword,genereatePhoneNumber} from '../../support/
 
 describe('signUpVerification', function(){
 
-    it('sign up', function(){
+    it('sign up verification should lead to otp page', function(){
 
         cy.visit('http://localhost:3000');
         cy.get('a').contains('Sign Up').click();
