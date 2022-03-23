@@ -18,7 +18,7 @@ func TestGetUserDetailsHandlerApproved(t *testing.T) {
 
 	var jsonStr = []byte(`{"mailid":"maneesh.konkala@gmail.com"}`)
 
-	req, err := http.NewRequest("GET", "/getUserDetails", bytes.NewBuffer(jsonStr))
+	req, err := http.NewRequest("POST", "/getUserDetails", bytes.NewBuffer(jsonStr))
 	if err != nil {
 		t.Fatal(err)
 	}
