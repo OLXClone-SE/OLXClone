@@ -5,11 +5,15 @@ Description :
 OLXClone is a platform where buyers can buy different categories of products (Used or Unused) offered by the sellers and sellers can sell different kind of products they have. Our platform will act as bridge connecting buyers and sellers.
 
 Team Members :
-   Name                             Github-Username                Role
-1. Venkata Sai Samanth Kommi        venkata sai samanth kommi      Backend
-2. Venkata Maneesh Reddy Konkala    KVManeeshReddy                 Backend
-3. Satya Naga Akhilesh Irrinki      Satya-Irrinki                  Frontend
-4. Jaya Chandra Gunturu             JayachandraGunturu             Frontend
+   Name                             Github-Username
+1. Venkata Sai Samanth Kommi        venkata sai samanth kommi
+2. Venkata Maneesh Reddy Konkala    KVManeeshReddy
+3. Satya Naga Akhilesh Irrinki      Satya-Irrinki
+4. Jaya Chandra Gunturu             JayachandraGunturu
+
+Roles:
+BackEnd - Venkata Sai Samanth Kommi, Venkata Maneesh Reddy Konkala.
+FrontEnd- Satya Naga Akhilesh Irrinki, Jaya Chandra Gunturu.
 
 Goal :
 
