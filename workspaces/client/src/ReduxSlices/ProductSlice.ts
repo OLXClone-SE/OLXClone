@@ -8,7 +8,7 @@ interface Product {
     productname: string,
     category: string,
     price: number,
-    path: number,
+    path: string,
     description: string,
 }
 
