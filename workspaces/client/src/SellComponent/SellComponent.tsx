@@ -7,6 +7,7 @@ import { updateProductDetails } from "../ReduxSlices/SellSlice";
 import { fetchUserProfile } from "../ReduxActions/UserProfileActions";
 import { useAppSelector } from "../Store/hooks";
 import { RootState } from "../Store/store";
+import './SellComponent.css';
 
 export function SellComponent() {
     const dispatch = useDispatch()
