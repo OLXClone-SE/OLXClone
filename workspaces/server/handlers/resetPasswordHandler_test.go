@@ -9,6 +9,12 @@ import (
 )
 
 func TestResetPasswordHandler(t *testing.T) {
+	// Set necessary environment variables
+	t.Setenv("dbhost", "localhost");
+	t.Setenv("dbuname", "postgres");
+	t.Setenv("dbpass", "Kvmr@1106");
+	t.Setenv("dbname", "postgres");
+	t.Setenv("dbport", "5432");
 
 	var jsonStr = []byte(`{"mailid":"maneesh.konkala@gmail.com","password":"Kvmr@1106","otp":"1234"}`)
 
