@@ -18,7 +18,7 @@ func TestUserVerificationHandlerResetPassword(t *testing.T) {
 
 	var jsonStr = []byte(`{"mailid":"abcd@gmail.com","password":"efgh@4567","action":"resetPassword"}`)
 
-	req, err := http.NewRequest("POST", "/signup", bytes.NewBuffer(jsonStr))
+	req, err := http.NewRequest("POST", "/verifyuser", bytes.NewBuffer(jsonStr))
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -50,7 +50,7 @@ func TestUserVerificationHandlerSignup(t *testing.T) {
 
 	var jsonStr = []byte(`{"mailid":"abc@gmail.com","password":"efgh@4567","action":"signup"}`)
 
-	req, err := http.NewRequest("POST", "/signup", bytes.NewBuffer(jsonStr))
+	req, err := http.NewRequest("POST", "/verifyuser", bytes.NewBuffer(jsonStr))
 	if err != nil {
 		t.Fatal(err)
 	}
