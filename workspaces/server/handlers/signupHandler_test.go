@@ -9,6 +9,13 @@ import (
 )
 
 func TestSignupHandler(t *testing.T) {
+	// Set necessary environment variables
+	t.Setenv("dbhost", "localhost");
+	t.Setenv("dbuname", "postgres");
+	t.Setenv("dbpass", "Kvmr@1106");
+	t.Setenv("dbname", "postgres");
+	t.Setenv("dbport", "5432");
+
 	var jsonStr = []byte(`{"mailid":"abcd@gmail.com","fname":"abcd","lname":"efgh","password":"abcd@1234","otp":"1234","phone":"+1234567890"}`)
 
 	req, err := http.NewRequest("POST", "/signup", bytes.NewBuffer(jsonStr))
