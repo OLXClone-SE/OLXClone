@@ -17,12 +17,23 @@ export function HomepageComponent() {
 
   const { approved, pending } = useAppSelector((root: RootState) => root.LoginSlice);
   const { products } = useAppSelector((root: RootState) => root.ProductSlice)
+  const searchWord = useAppSelector((root: RootState) => root.SearchSlice.value)
   const dispatch = useDispatch();
 
   useEffect(() => {
     if (store.getState().ProductSlice.products == null)
       dispatch(getProducts({ mailid: "" }))
   })
+
+  const matchPercent = (product: any, searchWord: any) => {
+    if (searchWord.length === 0) return 100
+    const name = product.productname
+    console.log(name, searchWord)
+    let intersection = name.split("").filter((x: any) => searchWord.split("").includes(x));
+    console.log(intersection)
+    console.log((intersection.length * 100 / name.length))
+    return (intersection.length / name.length) * 100;
+  }
 
   return (
     approved ?
@@ -43,7 +54,7 @@ export function HomepageComponent() {
           <SearchComponent />
         </Container>
         <Container className="cards-view">
-          {products?.map(product => <CardComponent
+          {products?.filter(product => matchPercent(product, searchWord) >= 50).map(product => <CardComponent
             path={product?.path}
             name={product?.productname}
             desc={product?.description}
