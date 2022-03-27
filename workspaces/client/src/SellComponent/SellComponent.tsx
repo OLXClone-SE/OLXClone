@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import Typography from '@mui/material/Typography';
 import { Copyright } from "../CopyrightComponent/CopyrightComponent";
 import { UserProduct } from "../Types/user";
 import { updateProductDetails } from "../ReduxSlices/SellSlice";
 import { fetchUserProfile } from "../ReduxActions/UserProfileActions";
 import { useAppSelector } from "../Store/hooks";
 import { RootState } from "../Store/store";
+import { saveUserProduct } from "../ReduxActions/SellActions";
+import { categories } from "../Utils/CategoriesList";
+import { NavBarComponent } from "../NavBarComponent/NavBarComponent";
 import './SellComponent.css';
 
 export function SellComponent() {
@@ -56,11 +58,29 @@ export function SellComponent() {
         dispatch(updateProductDetails({ userProduct }))
     }
 
+    const handleSubmit = (e: any) => {
+        e.preventDefault()
+        dispatch(saveUserProduct({ ...product, phone, mailid, category: categories()[+product.category] }))
+    }
+
     return (
         <React.Fragment>
-            <Typography gutterBottom variant="h5" component="div">
-                Product Details Here
-            </Typography>
+            <NavBarComponent />
+            <div className="container sell">
+                <form>
+                    <div className="form-group">
+                        <label>Product Name</label>
+                        <input type="text" className="form-control" id="productname" name="productname" onChange={handleChange} placeholder="Enter Product Name" required />
+                    </div>
+                    <br />
+                    <div className="form-group">
+                        <label>Category</label>
+                        <select className="form-select" id="category" name="category" defaultValue={0} onChange={handleChange}>
+                            {[categories().map((category, idx) => <option value={idx}>{category}</option>)]}
+                        </select>
+                    </div>
+                </form>
+            </div>
             <Copyright sx={{ mt: 8, mb: 4 }} />
         </React.Fragment>
     )
