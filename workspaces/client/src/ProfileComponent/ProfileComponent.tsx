@@ -18,6 +18,7 @@ export function ProfileComponent() {
   const { fname, lname, mailid, phone } = useAppSelector((state: RootState) => state.UserProfileSlice)
   const { loginData } = useAppSelector((root: RootState) => root.LoginSlice);
   const [profile, setProfile] = useState<UserProfile>({ fname: "", lname: "", phone: "", mailid: "" });
+  const { products } = useAppSelector((root: RootState) => root.ProductSlice)
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -126,11 +127,12 @@ export function ProfileComponent() {
         </div>
       </Container>
       <Container title="wekjnfkjgbk" className="cards-view">
-        <CardComponent />
-        <CardComponent />
-        <CardComponent />
-        <CardComponent />
-        <CardComponent />
+        {products?.filter(product => product?.mailid === mailid).map(product => <CardComponent
+          path={product?.path}
+          name={product?.productname}
+          desc={product?.description}
+          price={product?.price}
+        />)}
       </Container>
       <Copyright sx={{ mt: 8, mb: 4 }} />
     </React.Fragment>

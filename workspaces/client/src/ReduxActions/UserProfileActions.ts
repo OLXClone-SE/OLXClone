@@ -1,11 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axiosInstance from "../axiosInstance";
 import { urls } from '../app.constants'
-import { UserProfile } from "../Types/user";
-
-export interface userMail {
-    mailid: FormDataEntryValue | null,
-}
+import { userMail, UserProfile } from "../Types/user";
 
 export const fetchUserProfile = createAsyncThunk('user/fetchUserProfile', async (userData: userMail, _thunkAPI) => {
     const res = await axiosInstance.post(urls.fetchUserProfile, userData).then(resp => resp.data);
