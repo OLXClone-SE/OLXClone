@@ -79,6 +79,24 @@ export function SellComponent() {
                             {[categories().map((category, idx) => <option value={idx}>{category}</option>)]}
                         </select>
                     </div>
+                    <br />
+                    <div className="form-group">
+                        <label>Price</label>
+                        <input type="number" id="price" name="price" className="form-control" onChange={handleChange} required />
+                    </div>
+                    <br />
+                    <div className="form-group">
+                        <label>Description</label>
+                        <textarea className="form-control" id="description" name="description" onChange={handleChange} rows={3} maxLength={100} placeholder="max 100 characters" required></textarea>
+                    </div>
+                    <br />
+                    {/* <div className="form-group">
+                        <label className="form-label" htmlFor="customFile">Image</label>
+                        <input type="file" accept="image/*" name="path" className="form-control" onChange={handleChange} id="customFile" required />
+                    </div>
+                    <br /> */}
+                    <button type="submit" onClick={handleSubmit} style={{ marginRight: "20px" }} className="btn btn-primary">Sell Product</button>
+                    <button type="reset" className="btn btn-primary">Reset</button>
                 </form>
             </div>
             <Copyright sx={{ mt: 8, mb: 4 }} />
