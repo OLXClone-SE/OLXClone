@@ -10,16 +10,15 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Logo from "../Logo.png";
-import { useState } from "react";
 import { Copyright } from "../CopyrightComponent/CopyrightComponent";
 import { validateEmail } from "../Utils/validators";
 import ErrorMessages from "../Utils/ErrorMessages";
 import { LoginData } from "../Types/LoginComponentTypes";
-import axios from "axios";
-import { login } from "../ReduxActions/LoginActions";
 import { updateUserLoginDataAction } from "../ReduxSlices/LoginSlice";
 import { useAppDispatch } from '../Store/hooks';
 import { useNavigate } from 'react-router-dom';
+import { login } from "../ReduxActions/LoginActions";
+import { useState } from "react";
 
 const theme = createTheme();
 interface loginErrors {
@@ -37,8 +36,8 @@ export default function SignIn() {
     isInvalidCredentials: false
   };
 
-  const [validationResult, setValidationResult] = useState(false);
   const [errors, setErrors] = useState<loginErrors>(loginErrors);
+
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
@@ -55,14 +54,14 @@ export default function SignIn() {
       validationErrors.emailFormatError = ErrorMessages.emailError;
       validationErrors.isEmailError = true;
     }
-    else{
+    else {
       dispatch(updateUserLoginDataAction(loginData))
-      dispatch(login({...loginData}))
+      dispatch(login({ ...loginData }))
       navigate('/home');
-      }
-      validationErrors.invalidCredentials = ErrorMessages.invalidCredentials;
-      validationErrors.isInvalidCredentials = true;
-      setErrors({...validationErrors});
+    }
+    validationErrors.invalidCredentials = ErrorMessages.invalidCredentials;
+    validationErrors.isInvalidCredentials = true;
+    setErrors({ ...validationErrors });
   };
 
   const getLoginData = (data: FormData): LoginData => {
