@@ -9,10 +9,10 @@ import (
 )
 
 type GetUserDetailsResponse struct {
-	Mailid string
-	Fname  string
-	Lname  string
-	Phone  string
+	Mailid string `json:"mailid"`
+	Fname  string `json:"fname"`
+	Lname  string `json:"lname"`
+	Phone  string `json:"phone"`
 }
 
 type GetUserDetailsRequestBody struct {

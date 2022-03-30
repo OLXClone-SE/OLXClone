@@ -1,7 +1,10 @@
 import React from "react";
 import { Navbar, Container, Nav, NavDropdown } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 export function NavBarComponent() {
+
+    const navigate = useNavigate();
     return <>
         <style type="text/css">
             {`
@@ -19,7 +22,7 @@ export function NavBarComponent() {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="justify-content-end" activeKey="/home">
-                        <Nav.Link href="/home">Home</Nav.Link>
+                        <Nav.Link onClick={() => navigate("/home")}>Home</Nav.Link>
                         <NavDropdown title="Categories" className="categories">
                             <NavDropdown.Item href="#action/3.1">Category 1</NavDropdown.Item>
                             <NavDropdown.Item href="#action/3.2">Category 2</NavDropdown.Item>
@@ -33,8 +36,8 @@ export function NavBarComponent() {
                 <Nav className="justify-content-end" activeKey="/home">
                     <Nav.Item>
                         <NavDropdown title="Profile" id="basic-nav-dropdown" className="justify-content-end">
-                            <NavDropdown.Item href="/profile">Edit Profile</NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.2">Logout</NavDropdown.Item>
+                            <NavDropdown.Item onClick={() => navigate("/profile")}>Edit Profile</NavDropdown.Item>
+                            <NavDropdown.Item onClick={() => navigate("/home")}>Logout</NavDropdown.Item>
                         </NavDropdown>
                     </Nav.Item>
                 </Nav>
