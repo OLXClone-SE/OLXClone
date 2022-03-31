@@ -27,7 +27,11 @@ export function CardComponent(props: any) {
                 </Typography>
             </CardContent>
             <CardActions>
-                <Button size="small">View Details</Button>
+                <Button 
+                size="small"
+                href='/details'>
+                    View Details
+                </Button>
             </CardActions>
         </Card>
     );
