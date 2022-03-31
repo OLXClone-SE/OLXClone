@@ -5,5 +5,6 @@ export const urls = {
     resetPassword: "/resetpassword",
     verifyUser: "/verifyuser",
     fetchUserProfile: "/getUserDetails",
-    updateUserProfile: "/updateUserDetails"
+    updateUserProfile: "/updateUserDetails",
+    getProducts: "/getProducts"
 }

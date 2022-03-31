@@ -15,6 +15,7 @@ type Product struct {
 	Productname string `json:"productname"`
 	Category    string `json:"category"`
 	Price       int    `json:"price"`
+	Description string `json:"description"`
 }
 
 type GetProductsResponse struct {
