@@ -6,7 +6,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
-export function CardComponent() {
+export function CardComponent(props: any) {
     return (
         <Card sx={{ maxWidth: 345, marginRight: "20px", marginTop: "20px" }}>
             <CardMedia
@@ -17,10 +17,13 @@ export function CardComponent() {
             />
             <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
-                    Product
+                    {props.name}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                    This is a test product on display
+                    {props.desc === null ? "" : props?.desc?.substring(0, 10) + "...."}
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                    {props.price}
                 </Typography>
             </CardContent>
             <CardActions>
