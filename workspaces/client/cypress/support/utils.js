@@ -31,4 +31,13 @@ function generatePassword(){
     return text;
 }
 
-export default {generateName,generatePassword,genereatePhoneNumber}
+function generateOTP(i){
+    var num = "";
+    var numbers = "1234567890";
+    for(var j = 0; j < i; j++){
+        num += numbers.charAt(Math.floor(Math.random()*numbers.length));
+    }
+    return num;
+}
+
+export default {generateName,generatePassword,genereatePhoneNumber,generateOTP}

@@ -5,12 +5,12 @@ import { Copyright } from "../CopyrightComponent/CopyrightComponent";
 import { useAppSelector } from "../Store/hooks";
 import { RootState } from "../Store/store";
 import { useDispatch } from "react-redux";
-import { fetchUserProfile, saveUserProfile } from "../ReduxActions/UserProfileActions";
-import { updateProfileDetails } from "../ReduxSlices/UserProfileSlice";
-import { UserProfile } from "../Types/user";
+import { getProducts } from "../ReduxActions/ProductActions";
 import Typography from '@mui/material/Typography';
 
 export function DetailsComponent() {
+    const { products } = useAppSelector((root: RootState) => root.ProductSlice)    
+    const dispatch = useDispatch()
     return (
         <React.Fragment>
             <Typography gutterBottom variant="h5" component="div">
