@@ -5,27 +5,27 @@ import (
 	"encoding/json"
 	"net/http"
 	"net/http/httptest"
+	"server/utilities"
 	"testing"
 )
 
 func TestUserVerificationHandlerResetPassword(t *testing.T) {
-	// Set necessary environment variables
-	t.Setenv("dbhost", "localhost");
-	t.Setenv("dbuname", "postgres");
-	t.Setenv("dbpass", "Kvmr@1106");
-	t.Setenv("dbname", "postgres");
-	t.Setenv("dbport", "5432");
+	utilities.SetTestingEnvironmentVariables(t);
+	utilities.AddTestUser();
 
 	var jsonStr = []byte(`{"mailid":"abcd@gmail.com","password":"efgh@4567","action":"resetPassword"}`)
 
 	req, err := http.NewRequest("POST", "/verifyuser", bytes.NewBuffer(jsonStr))
 	if err != nil {
+		utilities.DeleteUser("abcd@gmail.com")
 		t.Fatal(err)
 	}
 	rr := httptest.NewRecorder()
 	handler := http.HandlerFunc(UserVerificationHandler)
 	handler.ServeHTTP(rr, req)
 	if status := rr.Code; status != http.StatusOK {
+		utilities.DeleteUser("abcd@gmail.com")
+		utilities.DeleteTestUserOTP("abcd@gmail.com")
 		t.Errorf("handler returned wrong status code: got %v want %v",
 			status, http.StatusOK)
 	}
@@ -35,29 +35,31 @@ func TestUserVerificationHandlerResetPassword(t *testing.T) {
 	var response mailVerificationResponse;
 	json.Unmarshal(rr.Body.Bytes(), &response);
 	if response.OtpSent != expected {
+		utilities.DeleteUser("abcd@gmail.com")
+		utilities.DeleteTestUserOTP("abcd@gmail.com")
 		t.Errorf("handler returned unexpected body: got %v want %v",
 			response.OtpSent, expected)
 	}
+	utilities.DeleteUser("abcd@gmail.com")
+	utilities.DeleteTestUserOTP("abcd@gmail.com")
 }
 
 func TestUserVerificationHandlerSignup(t *testing.T) {
-	// Set necessary environment variables
-	t.Setenv("dbhost", "localhost");
-	t.Setenv("dbuname", "postgres");
-	t.Setenv("dbpass", "Kvmr@1106");
-	t.Setenv("dbname", "postgres");
-	t.Setenv("dbport", "5432");
+	utilities.SetTestingEnvironmentVariables(t);
 
-	var jsonStr = []byte(`{"mailid":"abc@gmail.com","password":"efgh@4567","action":"signup"}`)
+	var jsonStr = []byte(`{"mailid":"abcd@gmail.com","password":"efgh@4567","action":"signup"}`)
 
 	req, err := http.NewRequest("POST", "/verifyuser", bytes.NewBuffer(jsonStr))
 	if err != nil {
+		utilities.DeleteUser("abcd@gmail.com")
 		t.Fatal(err)
 	}
 	rr := httptest.NewRecorder()
 	handler := http.HandlerFunc(UserVerificationHandler)
 	handler.ServeHTTP(rr, req)
 	if status := rr.Code; status != http.StatusOK {
+		utilities.DeleteUser("abcd@gmail.com")
+		utilities.DeleteTestUserOTP("abcd@gmail.com")
 		t.Errorf("handler returned wrong status code: got %v want %v",
 			status, http.StatusOK)
 	}
@@ -67,7 +69,11 @@ func TestUserVerificationHandlerSignup(t *testing.T) {
 	var response mailVerificationResponse;
 	json.Unmarshal(rr.Body.Bytes(), &response);
 	if response.OtpSent != expected {
+		utilities.DeleteUser("abcd@gmail.com")
+		utilities.DeleteTestUserOTP("abcd@gmail.com")
 		t.Errorf("handler returned unexpected body: got %v want %v",
 			response.OtpSent, expected)
 	}
+	utilities.DeleteUser("abcd@gmail.com")
+	utilities.DeleteTestUserOTP("abcd@gmail.com")
 }

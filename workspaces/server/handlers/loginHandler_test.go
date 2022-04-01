@@ -5,27 +5,26 @@ import (
 	"encoding/json"
 	"net/http"
 	"net/http/httptest"
+	"server/utilities"
 	"testing"
 )
 
 func TestLoginHandlerApproved(t *testing.T) {
-	// Set necessary environment variables
-	t.Setenv("dbhost", "localhost");
-	t.Setenv("dbuname", "postgres");
-	t.Setenv("dbpass", "Kvmr@1106");
-	t.Setenv("dbname", "postgres");
-	t.Setenv("dbport", "5432");
+	utilities.SetTestingEnvironmentVariables(t);
+	utilities.AddTestUser()
 
-	var jsonStr = []byte(`{"mailid":"maneesh.konkala@gmail.com","password":"Kvmr@1106"}`)
+	var jsonStr = []byte(`{"mailid":"abcd@gmail.com","password":"Abcd@1234"}`)
 
-	req, err := http.NewRequest("GET", "/login", bytes.NewBuffer(jsonStr))
+	req, err := http.NewRequest("POST", "/login", bytes.NewBuffer(jsonStr))
 	if err != nil {
+		utilities.DeleteUser("abcd@gmail.com");
 		t.Fatal(err)
 	}
 	rr := httptest.NewRecorder()
 	handler := http.HandlerFunc(LoginHandler)
 	handler.ServeHTTP(rr, req)
 	if status := rr.Code; status != http.StatusOK {
+		utilities.DeleteUser("abcd@gmail.com");
 		t.Errorf("handler returned wrong status code: got %v want %v",
 			status, http.StatusOK)
 	}
@@ -35,29 +34,29 @@ func TestLoginHandlerApproved(t *testing.T) {
 	var response loginResponse;
 	json.Unmarshal(rr.Body.Bytes(), &response);
 	if response.Approved != expected {
+		utilities.DeleteUser("abcd@gmail.com");
 		t.Errorf("handler returned unexpected body: got %v want %v",
 			response.Approved, expected)
 	}
+	utilities.DeleteUser("abcd@gmail.com");
 }
 
 func TestLoginHandlerNotApproved(t *testing.T) {
-	// Set necessary environment variables
-	t.Setenv("dbhost", "localhost");
-	t.Setenv("dbuname", "postgres");
-	t.Setenv("dbpass", "Kvmr@1106");
-	t.Setenv("dbname", "postgres");
-	t.Setenv("dbport", "5432");
+	utilities.SetTestingEnvironmentVariables(t);
+	utilities.AddTestUser()
+	
+	var jsonStr = []byte(`{"mailid":"abcd@gmail.com","password":"Abcd@1235"}`)
 
-	var jsonStr = []byte(`{"mailid":"maneesh.konkala@gmail.com","password":"12345678"}`)
-
-	req, err := http.NewRequest("GET", "/login", bytes.NewBuffer(jsonStr))
+	req, err := http.NewRequest("POST", "/login", bytes.NewBuffer(jsonStr))
 	if err != nil {
+		utilities.DeleteUser("abcd@gmail.com");
 		t.Fatal(err)
 	}
 	rr := httptest.NewRecorder()
 	handler := http.HandlerFunc(LoginHandler)
 	handler.ServeHTTP(rr, req)
 	if status := rr.Code; status != http.StatusOK {
+		utilities.DeleteUser("abcd@gmail.com");
 		t.Errorf("handler returned wrong status code: got %v want %v",
 			status, http.StatusOK)
 	}
@@ -67,7 +66,9 @@ func TestLoginHandlerNotApproved(t *testing.T) {
 	var response loginResponse;
 	json.Unmarshal(rr.Body.Bytes(), &response);
 	if response.Approved != expected {
+		utilities.DeleteUser("abcd@gmail.com");
 		t.Errorf("handler returned unexpected body: got %v want %v",
 			response.Approved, expected)
 	}
+	utilities.DeleteUser("abcd@gmail.com");
 }

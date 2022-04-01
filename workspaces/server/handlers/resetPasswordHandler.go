@@ -29,6 +29,7 @@ func CreateResetPasswordResponse(approved bool) []byte {
 func updateUserPassword(reqBodyObject resetPasswordRequestBody) bool {
 	db := utilities.GetDBInstance()
 	userInfo := models.User{}
+	reqBodyObject.Password = utilities.GetHashString(reqBodyObject.Password)
 	res := db.Table(userInfo.TableName()).Where(fmt.Sprintf("%s = ?", constants.MAIL_ID), reqBodyObject.Mailid).UpdateColumn(constants.Password, reqBodyObject.Password)
 	return res.RowsAffected != 0
 }
