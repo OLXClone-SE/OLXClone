@@ -131,6 +131,17 @@ Response Body :
     &nbsp; "approved": boolean,  
 }
 
+Test Cases
+----------------------
+
+We have used inbuilt testing framework for api and unit testing. In order to running test cases please use the command **`yarn workspace server test`**. This command will run the server and parallely runs the tests as they need the server to be up and running.
+- getProductsHandler_test : Tests whether the getProductsHandler is returning expected response or not.
+- getUserDetailsHandler_test: Tests whether the getUserDetailsHandler is returning expected response or not.
+- loginHandler_test: Tests whether the loginHandler is returning expected response or not.
+- resetPasswordHandler_test: Tests whether the resetPasswordHandler is returning expected response or not.
+- signupHandler_test: Tests whether the signupHandler is returning expected response or not.
+- updateUserDetails_test: Tests whether the updateUserDetailsHandler is returning expected response or not.
+- userVerificationHandler_test: Tests whether the userVerificationHandler is returning expected response or not.
 
 
 Frontend ::
