@@ -13,7 +13,7 @@ describe('signUpVerification', function(){
         cy.get('input[name="phone"]').type('1'+genereatePhoneNumber(9));
         cy.get('input[name="password"]').type(generatePassword());
         cy.get('button').contains('Sign Up').click();
-        cy.location('pathname').should('eq', '/verify')
+        cy.location('pathname').should('eq', '/verify');
     });
 
 });
