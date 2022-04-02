@@ -1,6 +1,7 @@
 import React from "react";
 import { Navbar, Container, Nav, NavDropdown } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import { categories } from "../Utils/CategoriesList";
 
 export function NavBarComponent() {
 
@@ -24,13 +25,9 @@ export function NavBarComponent() {
                     <Nav className="justify-content-end" activeKey="/home">
                         <Nav.Link onClick={() => navigate("/home")}>Home</Nav.Link>
                         <NavDropdown title="Categories" className="categories">
-                            <NavDropdown.Item href="#action/3.1">Category 1</NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.2">Category 2</NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.1">Category 3</NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.2">Category 4</NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.1">Category 5</NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.2">Category 6</NavDropdown.Item>
+                            {categories().map(category => <NavDropdown.Item href="#action/3.1">{category}</NavDropdown.Item>)}
                         </NavDropdown>
+                        <Nav.Link className="categories" onClick={() => navigate("/sell")}>Sell</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
                 <Nav className="justify-content-end" activeKey="/home">

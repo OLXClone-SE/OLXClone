@@ -17,5 +17,6 @@ func (app *application) controller() *httprouter.Router {
 	router.HandlerFunc(http.MethodPost, paths.UPDATE_USER_DETAILS, handlers.UpdateUserDetailsHandler)
 	router.HandlerFunc(http.MethodPost, paths.GET_USER_DETAILS, handlers.GetUserDetailsHandler)
 	router.HandlerFunc(http.MethodPost, paths.GET_PRODUCTS, handlers.GetProductsHandler)
+	router.HandlerFunc(http.MethodPost, paths.SAVE_PRODUCTS, handlers.SaveProductHandler)
 	return router
 }
