@@ -14,6 +14,7 @@ import ProfileComponent from './ProfileComponent/ProfileComponent';
 import DetailsComponent from './DetailsComponent/DetailsComponent';
 import { Provider } from 'react-redux';
 import { store } from './Store/store';
+import { SellComponent } from './SellComponent/SellComponent'
 
 render(
   <Provider store={store}>
@@ -28,6 +29,7 @@ render(
         <Route path="/home" element={<HomePageComponent />} />
         <Route path="/profile" element={<ProfileComponent />} />
         <Route path="/details" element={<DetailsComponent />} />
+        <Route path="/sell" element={<SellComponent />} />
       </Routes>
     </BrowserRouter>
   </Provider>,
