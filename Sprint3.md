@@ -172,5 +172,15 @@ User Products Details
 The products displayed in the user details page will not have dummy data instead the page will show the products uploaded by the current loggedin user. It is completely integrated with redux and backend as well.
 
 
+Test Cases
+----------------------
 
+We have used cypress for end to end testing and used jest for writing unit test cases. In order to running test cases please use the command **`npm test`**. 
+On the front end We have created custom commands and writte support functions in cypress. We have mocked the API response and tested the following services,
+- loginValidation : Tests whether a user is able to login with valid credentials and redirects to home page if the the credentials are valid.
+- updateUserDetails: Tests whether the update service is able to update the user details on clicking save changes.
+- verifyUserOTP: Tests whether the user signing up for the website is genuine or not by verifying whether the user enters valid OTP for singing up.
+- getUserDetails: Tests whether Edit profile is able to retrieve the user details on click.
+- resetPassword: Tests whether user is able to rest his/her password by selecting forgot password option.
+- getProducts: Tests whether products are displayed to the user on successful login.
 
