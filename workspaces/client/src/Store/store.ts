@@ -6,6 +6,7 @@ import VerifyUserSlice from '../ReduxSlices/VerifyUserSlice'
 import UserProfileSlice from "../ReduxSlices/UserProfileSlice"
 import ProductSlice from "../ReduxSlices/ProductSlice"
 import SellSlice from "../ReduxSlices/SellSlice"
+import SearchSlice from "../ReduxSlices/SearchSlice"
 
 export const store = configureStore({
   reducer: {
@@ -16,6 +17,7 @@ export const store = configureStore({
     "UserProfileSlice": UserProfileSlice,
     "ProductSlice": ProductSlice,
     "SellSlice": SellSlice,
+    "SearchSlice": SearchSlice,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
