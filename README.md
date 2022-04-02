@@ -1,5 +1,7 @@
 Project Title : OLXClone
 
+Note :: MD files for each sprint are available in the root folder of the project with name pattern Sprint*.md
+
 Description :
 
 OLXClone is a platform where buyers can buy different categories of products (Used or Unused) offered by the sellers and sellers can sell different kind of products they have. Our platform will act as bridge connecting buyers and sellers.
