@@ -35,7 +35,7 @@ Request Body :
 Response Body :  
 
 {  
-    &nbsp; "products" : [] // list of products
+    &nbsp; "products" : [] // list of products  
 }  
 
 if the mail id is an empty string all the products are fetched.
@@ -52,16 +52,17 @@ Data contract :
 Request Body :  
 
 {  
-    &nbsp; "mailid" : string,  
+    &nbsp; "mailid" : string,    
 }  
 
 Response Body :  
 
 {
-    &nbsp; "mailid": string,
-    &nbsp; "fname": string,
-    &nbsp; "lname": string,
-    &nbsp; "phone": string
+    <br/>
+    &nbsp; "mailid": string,    
+    &nbsp; "fname": string,      
+    &nbsp; "lname": string,    
+    &nbsp; "phone": string      
 }
 
 Save Product API:
@@ -76,19 +77,21 @@ Data contract :
 Request Body :  
 
 {
-    &nbsp; "mailid": string,
-    &nbsp; "phone": string,
-    &nbsp; "path": string,
-    &nbsp; "productname": string,
-    &nbsp; "category": string,
-    &nbsp; "price": integer
-    &nbsp; "description": string,
+    <br/>
+    &nbsp; "mailid": string,  
+    &nbsp; "phone": string,  
+    &nbsp; "path": string,  
+    &nbsp; "productname": string,  
+    &nbsp; "category": string,  
+    &nbsp; "price": integer  
+    &nbsp; "description": string,  
 }
 
 Response Body :  
 
 {
-    &nbsp; "approved": boolean,
+    </br>
+    &nbsp; "approved": boolean,  
 }
 
 
