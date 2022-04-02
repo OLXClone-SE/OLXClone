@@ -1,7 +1,7 @@
 import {generateName,generatePassword} from '../../support/utils';
 
-describe('Navigating to login page', () => {
-    it('Visits the login page on entering website URL', () => {
+describe('User Login validation', () => {
+    it('Verifies the entered user credentials', () => {
       cy.visit('localhost:3000');
       cy.get('input[name="mailid"]').type(generateName()+'@gmail.com');
       cy.get('input[name="password"]').type(generatePassword());

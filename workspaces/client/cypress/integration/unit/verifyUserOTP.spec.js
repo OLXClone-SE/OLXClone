@@ -1,8 +1,8 @@
-import {generateName,generatePassword,genereatePhoneNumber} from '../../support/utils';
+import {generateName,generatePassword,genereatePhoneNumber,generateOTP} from '../../support/utils';
 
 describe('signUpVerification', function(){
 
-    it('sign up verification should lead to otp page', function(){
+    it('validate user otp', function(){
 
         cy.visit('http://localhost:3000');
         cy.get('a').contains('Sign Up').click();
@@ -13,7 +13,12 @@ describe('signUpVerification', function(){
         cy.get('input[name="phone"]').type('1'+genereatePhoneNumber(9));
         cy.get('input[name="password"]').type(generatePassword());
         cy.get('button').contains('Sign Up').click();
-        cy.location('pathname').should('eq', '/verify');
+        cy.location('pathname').should('eq', '/verify')
+        cy.get('input[name="otp"]').type(generateOTP(4));
+        cy.get('button').contains('Validate OTP').click();
+        cy.intercept('POST','http://localhost:4000/verifyuser',{"approved" : true});
+        cy.location('pathname').should('eq', '/')
+
     });
 
 });
