@@ -4,10 +4,11 @@
   "description": "This workspace contains server application.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "go" : "go",
     "start": "go run .",
     "hot" : "$(go env GOPATH)/bin/air",
-    "get" : "go get"
+    "get" : "go get",
+    "test": "concurrently --kill-others-on-fail \"yarn hot\" \"go test ./...\""
   },
   "author": "",
   "license": "ISC"
