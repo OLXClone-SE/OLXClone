@@ -1,18 +1,16 @@
-import React, { useEffect, useState } from "react";
-import { NavBarComponent } from "../NavBarComponent/NavBarComponent";
-import { Container } from "react-bootstrap";
+import React from "react";
 import { Copyright } from "../CopyrightComponent/CopyrightComponent";
-import { useAppSelector } from "../Store/hooks";
-import { RootState } from "../Store/store";
-import { useDispatch } from "react-redux";
-import { getProducts } from "../ReduxActions/ProductActions";
 import Typography from '@mui/material/Typography';
 
-export function DetailsComponent() {
-    const { products } = useAppSelector((root: RootState) => root.ProductSlice)    
-    const dispatch = useDispatch()
+export function DetailsComponent(props: { data: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; }) {
+
     return (
         <React.Fragment>
+            <img 
+            src="../images/product.jpg"
+            alt="product"
+            width="193" height="130"/>
+            <p>{props.data} </p>
             <Typography gutterBottom variant="h5" component="div">
                 Product Details Here
             </Typography>

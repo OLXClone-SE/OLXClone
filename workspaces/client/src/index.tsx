@@ -28,7 +28,7 @@ render(
         <Route path="/redux" element={<CounterComponent />} />
         <Route path="/home" element={<HomePageComponent />} />
         <Route path="/profile" element={<ProfileComponent />} />
-        <Route path="/details" element={<DetailsComponent />} />
+        <Route path="/details" element={<DetailsComponent data={undefined} />} />
         <Route path="/sell" element={<SellComponent />} />
       </Routes>
     </BrowserRouter>
