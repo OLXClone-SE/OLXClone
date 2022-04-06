@@ -13,3 +13,16 @@ OLX CLONE is the title of our application.
 <p>
 Our application aims to replicate some of the features of the OLX CLONE application using a different tech stack. We are implementing features like 
 </p>
+
+<ul>
+<li>Posting advertisement about a product.</li>
+<li>Viewing different kinds of products available on the platform to buy.</li>
+<li>Viewing own listed products which the logged-in user wants to sell on the website.</li>
+<li>Searching products on the website by search keyword, category, and other factors.</li>
+<li>Updating the user information such as name, phone number, address, and others.</li>
+<li>Viewing user profile information.</li>
+<li>Viewing categories list available on the portal.</li>
+<li>Selecting and viewing more details about a particular product.</li>
+<li>Securely Sign up and log on to the system.</li>
+<li>Getting OTPs for different flows like forgetting a password, signing up, etc.</li>
+</ul>
