@@ -1,6 +1,8 @@
 package handlers
 
 import (
+	"fmt"
+	"server/constants"
 	"server/utilities"
 )
 
@@ -29,4 +31,15 @@ func getImagesResponse(products []Product) []byte {
 	}
 	productsResponse := utilities.ToJson(response)
 	return productsResponse
+}
+
+func fetchImages(reqBodyObject GetProductsRequestBody) []Product {
+	db := utilities.GetDBInstance()
+	var products []Product
+	if reqBodyObject.Mailid != "" {
+		db.Table("Products").Where(fmt.Sprintf("%s = ?", constants.MAIL_ID), reqBodyObject.Mailid).Scan(&products)
+	} else {
+		db.Table("Products").Scan(&products)
+	}
+	return products
 }
