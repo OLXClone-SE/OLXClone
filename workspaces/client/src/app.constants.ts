@@ -7,5 +7,6 @@ export const urls = {
     fetchUserProfile: "/getUserDetails",
     updateUserProfile: "/updateUserDetails",
     getProducts: "/getProducts",
-    saveProduct: "/saveProduct"
+    saveProduct: "/saveProduct",
+    uploadImage: "/uploadImage"
 }
