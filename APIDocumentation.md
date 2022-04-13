@@ -288,3 +288,62 @@
 <br/>
 <br/>
 <hr/>
+
+<h3> Update User Details API </h3>
+    <p><br>
+        This endpoint is used by the profile page to update user personal details.
+    </p>
+    
+<h4>Target URL </h4>
+   
+     http://localhost:4000/updateUserDetails
+
+   
+<h4>Request Method   </h4>
+    
+    Post
+  
+
+<h4> Request Body </h4>
+
+```json
+{
+    "mailid" : "mail@gmail.com",
+    "fname" : "sam",
+    "lname" : "kommi",
+    "phone" : "0000000000"
+}
+```
+<h4> Request Fields </h4>
+
+| Field Name  | Description |  Datatype |
+| ------------- | ------------- | ------------- | 
+| mailid | The mail Id of the user  | string |
+| fname | The first name of the user | string |
+| lname | The last name of the user | string |
+| phone | The mobile number of the user | string |
+  
+<h4> Response Examples </h4>
+<h4> Case #1 - updated Successfully </h4>
+
+> ```json
+> {
+>     "updated" : true
+> }
+> ```     
+<h4> Case #2 - update failed </h4>
+
+> ```json
+> {
+>     "updated" : false
+> }
+> ``` 
+
+<h4> Response Fields </h4>
+
+| Field Name  | Description |  Datatype |
+| ------------- | ------------- | -------------
+| updated | Indicates whether the user details are updated or not  | string |
+<br/>
+<br/>
+<hr/>
