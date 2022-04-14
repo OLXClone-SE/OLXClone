@@ -232,63 +232,6 @@
 <br/>
 <hr/>
 
-<h3> Verifyuser API  </h3>
-    <p><br>
-        This API will be used at two different places as of now while signing up and while resetting the password. So the action attribute in the request body changes accordingly.  
-        This API will verify whether the user mail id is present in the database or not and will send an email to the user's registered mail id.  
-        "action" attribute will take any string among the following ["signup", "resetPassword"] 
-    </p>
-    
-<h4>Target URL </h4>
-   
-     http://localhost:4000/verifyuser  
-
-   
-<h4>Request Method   </h4>
-    
-    Post
-  
-
-<h4> Request Body </h4>
-
-```json
-{
-    "mailid" : "mail@gmail.com",
-    "action" : "signup | resetPassword"
-}
-```
-<h4> Request Fields </h4>
-
-| Field Name  | Description |  Datatype |
-| ------------- | ------------- | ------------- | 
-| mailid | The mail Id of the user  | string |
-| action | The action of the user, either signup or reset password | string |
-  
-<h4> Response Examples </h4>
-<h4> Case #1 - verified Successfully </h4>
-
-> ```json
-> {
->     "otpsent" : true
-> }
-> ```     
-<h4> Case #2 - verification failed </h4>
-
-> ```json
-> {
->     "otpsent" : false
-> }
-> ``` 
-
-<h4> Response Fields </h4>
-
-| Field Name  | Description |  Datatype |
-| ------------- | ------------- | -------------
-| otpsent | indicates whether the user verification is success or not and otp is sent to the mailid or not | boolean 
-<br/>
-<br/>
-<hr/>
-
 <h3> Update User Details API </h3>
     <p><br>
         This endpoint is used by the profile page to update user personal details.
