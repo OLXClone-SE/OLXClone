@@ -9,11 +9,16 @@ import { RootState } from "../Store/store";
 import { saveUserProduct } from "../ReduxActions/SellActions";
 import { categories } from "../Utils/CategoriesList";
 import { NavBarComponent } from "../NavBarComponent/NavBarComponent";
+import { useNavigate } from "react-router-dom";
 import './SellComponent.css';
 
 export function SellComponent() {
     const dispatch = useDispatch()
-
+    const navigate = useNavigate();
+    if (!document.cookie.split(";").find(row => row.startsWith('token='))?.length) {
+        console.log("not here");
+        navigate('/')
+    }
     const initialState: UserProduct = {
         productname: "",
         category: "",
