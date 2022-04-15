@@ -290,3 +290,62 @@
 <br/>
 <br/>
 <hr/>
+
+<h3> User Details API </h3>
+    <p><br>
+        This endpoint user details api is used for fetching the current loggedin user's details. It will be used in sell product functionality as well as update user details functionality of the application.
+    </p>
+    
+<h4>Target URL </h4>
+   
+     http://localhost:4000/getUserDetails
+
+   
+<h4>Request Method   </h4>
+    
+    Post
+  
+
+<h4> Request Body </h4>
+
+```json
+{
+    "mailid" : "mail@gmail.com"
+}
+```
+<h4> Request Fields </h4>
+
+| Field Name  | Description |  Datatype |
+| ------------- | ------------- | ------------- | 
+| mailid | The mail Id of the user  | string |
+  
+<h4> Response Examples </h4>
+<h4> Case #1 - fetched Successfully </h4>
+
+> ```json
+> {
+>    "mailid" : "mail@gmail.com",
+>    "fname" : "sam",
+>    "lname" : "kommi",
+>    "phone" : "0000000000",
+> }
+> ```     
+<h4> Case #2 - fetch failed </h4>
+
+> ```json
+> {
+>    
+> }
+> ``` 
+
+<h4> Response Fields </h4>
+
+| Field Name  | Description |  Datatype |
+| ------------- | ------------- | -------------
+| mailid | The mail Id of the user  | string |
+| fname | The first name of the user | string |
+| lname | The last name of the user | string |
+| phone | The mobile number of the user | string |
+<br/>
+<br/>
+<hr/>
