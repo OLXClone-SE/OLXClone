@@ -92,3 +92,37 @@ How to run the project :
 3. In order to use the application a user must create an account using a mail id. 
     1. Signup using mail id and verify otp.
     2. Once the otp is verified user can logon to the system and can access all the functionalities available in the system.
+
+<br/>
+
+<h3>Sprint 4 Deliverables</h3>
+
+JWT Implementation
+--------------------
+
+<p>We implemented user authorization functionality using JSON Web Tokens. For this we had to resolve cors on both backend and front end so that we are allowed to send cokkies from the front end to the backend for verification. Also, it helped to set cookie on the front end which is being sent from the backend.</p>
+
+<p>For now the cookie is set to be timed out after 30 mins and if the user wants to access any functionality of the application after 30 mins they have to login again.</p>
+
+<p>For every request that requires authorization front end will send a token to the backend and the backend will verify the token with secret hash value. A lot of effort is put on this feature both from the backend as well front end.
+
+Logout Functionality
+--------------------
+
+<p>After clicking on the logout button user will be redirected to the login page and the token at the client side will be invalidated.</p>
+
+Test Cases ::
+
+--------------
+
+!!!!!!!!!!!!!!!! Fill for both backend and front end !!!!!!!!!!!!!!!!
+
+API
+---
+!!!!!!!!!!!!!!!! Jayachandra !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+For format refer to api documentation.md
+
+Image Upload Front end 
+----------------------
+
+!!!!!!!!!!!!!!!! Jayachandra !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
