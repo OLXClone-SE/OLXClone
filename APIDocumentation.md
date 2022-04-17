@@ -414,3 +414,56 @@
 <br/>
 <br/>
 <hr/>
+
+<h3> Products API </h3>
+    <p><br>
+        Developed products api, which will fetch the available products for the logged in user. It also supports the functionality of getting a specific user products (by passing the user email address in the api call). Products table is created on the postgresSQL db for the purpose of maintaing the existing products and adding new products to the existing one's.
+    </p>
+    
+<h4>Target URL </h4>
+   
+      http://localhost:4000/getProducts
+
+   
+<h4>Request Method   </h4>
+    
+    Post
+  
+
+<h4> Request Body </h4>
+
+```json
+{
+    "mailid" : "mail@gmail.com",
+}
+```
+<h4> Request Fields </h4>
+
+| Field Name  | Description |  Datatype |
+| ------------- | ------------- | ------------- | 
+| mailid | The mail Id of the user  | string |
+  
+<h4> Response Examples </h4>
+<h4> Case #1 - products fetched Successfully </h4>
+
+> ```json
+> {
+>   "products" : []
+> }
+> ```     
+<h4> Case #2 - fetch failed </h4>
+
+> ```json
+> {
+>   
+> }
+> ``` 
+
+<h4> Response Fields </h4>
+
+| Field Name  | Description |  Datatype |
+| ------------- | ------------- | -------------
+| products | This is list of products available for logged in users to buy | product |
+<br/>
+<br/>
+<hr/>
