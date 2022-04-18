@@ -1,4 +1,3 @@
-<h1>Sprint Board</h1>
 
 <h3>Application Overview</h3>
 <hr/>
@@ -36,7 +35,7 @@ Our application aims to replicate some of the features of the OLX CLONE applicat
 <br/>
 </ul>
 
-How to run the project :
+<h3>How to run the project :</h3>
 <hr/>
 
 1. Pre-requisites
@@ -72,8 +71,8 @@ How to run the project :
     2. Once the otp is verified user can logon to the system and can access all the functionalities available in the system.
 
 <h3>Application Demo Video</h3>
-https://user-images.githubusercontent.com/34389177/164353638-bc62c406-aec7-4438-bb5e-c4cca95a2073.mp4
 
+https://user-images.githubusercontent.com/34389177/164353638-bc62c406-aec7-4438-bb5e-c4cca95a2073.mp4
 
 
 <h3>Frontend cypress tests</h3>
@@ -135,7 +134,6 @@ JWT Implementation
 
 <p>After clicking on the logout button user will be redirected to the login page and the token at the client side will be invalidated.</p>
 
-<hr/>
 
 
 <h3>Image uploading funcitonality</h3>
@@ -194,7 +192,6 @@ JWT Implementation
 <br/>
 <br/>
 
-<hr/>
 
 <h3> Team Members Details </h3>
 <hr/>
