@@ -42,6 +42,10 @@ func GetUserDetailsHandler(writer http.ResponseWriter, request *http.Request) {
 	utilities.ParseRequestBody(request, &reqBodyObject)
 	userDetails := fetchUser(reqBodyObject)
 	userDetailsResp := getUserDetailsResponse(userDetails)
+	verify := utilities.VerifyCookie(writer, request)
+	if !verify {
+		userDetailsResp = utilities.ToJson(GetUserDetailsResponse{})
+	}
 	if userDetailsResp != nil {
 		utilities.WriteJsonResponse(writer, http.StatusOK, userDetailsResp)
 	}

@@ -28,6 +28,8 @@ func updateUserDetails(reqBodyObject models.UpdtableUserDetails) bool {
 }
 
 func UpdateUserDetailsHandler(writer http.ResponseWriter, request *http.Request) {
+	verify := utilities.VerifyCookie(writer, request)
+	fmt.Print(verify)
 	var updateUserDetailsReqBodyObject models.UpdtableUserDetails
 	utilities.ParseRequestBody(request, &updateUserDetailsReqBodyObject)
 	success := updateUserDetails(updateUserDetailsReqBodyObject)

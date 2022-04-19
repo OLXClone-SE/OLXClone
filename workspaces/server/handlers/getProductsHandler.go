@@ -50,6 +50,10 @@ func GetProductsHandler(writer http.ResponseWriter, request *http.Request) {
 	utilities.ParseRequestBody(request, &reqBodyObject)
 	productDetails := fetchProducts(reqBodyObject)
 	productDetailsResp := getProductsResponse(productDetails)
+	verify := utilities.VerifyCookie(writer, request)
+	if !verify {
+		productDetailsResp = utilities.ToJson(GetUserDetailsResponse{})
+	}
 	if productDetailsResp != nil {
 		utilities.WriteJsonResponse(writer, http.StatusOK, productDetailsResp)
 	}
