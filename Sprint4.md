@@ -88,3 +88,7 @@ How to run the project :
     6. Now in order to run the application go to root folder of the project and run the command "yarn start", it will start both the server and the client.
     7. The client will be available on http://localhost:3000 and the server will be available on http://localhost:4000
     8. Several other customized commands are available to run individual modules in different modes, for those please refer to package.json > scripts.
+
+3. In order to use the application a user must create an account using a mail id. 
+    1. Signup using mail id and verify otp.
+    2. Once the otp is verified user can logon to the system and can access all the functionalities available in the system.
