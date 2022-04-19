@@ -6,7 +6,17 @@ import (
 	"server/constants"
 	"server/models"
 	"server/utilities"
+	"time"
+
+	"github.com/dgrijalva/jwt-go"
 )
+
+var jwtKey = []byte("abcd123")
+
+type Token struct {
+	Mailid string `json:"mailid"`
+	*jwt.StandardClaims
+}
 
 type loginResponse struct {
 	Approved bool `json:"approved"`
@@ -37,6 +47,26 @@ func LoginHandler(writer http.ResponseWriter, request *http.Request) {
 	utilities.ParseRequestBody(request, &reqBodyObject)
 	success := verifyUser(reqBodyObject)
 	loginResponse := createLoginResponse(success)
+	if success {
+		expirationTime := time.Now().Add(1 * time.Minute)
+		tk := Token{
+			Mailid: reqBodyObject.Mailid,
+			StandardClaims: &jwt.StandardClaims{
+				ExpiresAt: expirationTime.Unix(),
+			},
+		}
+		token := jwt.NewWithClaims(jwt.GetSigningMethod("HS256"), tk)
+		tokenString, error := token.SignedString(jwtKey)
+		if error != nil {
+			fmt.Println(error)
+		}
+		fmt.Println("setting cookie")
+		http.SetCookie(writer, &http.Cookie{
+			Name:    "token",
+			Value:   tokenString,
+			Expires: expirationTime,
+		})
+	}
 	if loginResponse != nil {
 		utilities.WriteJsonResponse(writer, http.StatusOK, loginResponse)
 	}
