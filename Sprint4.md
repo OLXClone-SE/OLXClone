@@ -38,15 +38,15 @@ Our application aims to replicate some of the features of the OLX CLONE applicat
 </ul>
 
 <br/>
-<h3>Link to API documentation: 
+<h3>Link to API documentation: </h3>
 <br/>
-<https://github.com/OLXClone-SE/OLXClone/blob/main/APIDocumentation.md></h3>
+<https://github.com/OLXClone-SE/OLXClone/blob/main/APIDocumentation.md>
 
 <br/>
 
-<h3>Link to Sprint Board: 
+<h3>Link to Sprint Board: </h3>
 <br/>
-<https://github.com/orgs/OLXClone-SE/projects/1></h3>
+<https://github.com/orgs/OLXClone-SE/projects/1>
 
 <br/>
 
