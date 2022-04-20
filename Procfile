@@ -1,1 +1,1 @@
-web: bin/server
+web: workspaces/server/bin/server
