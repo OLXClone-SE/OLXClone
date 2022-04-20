@@ -57,3 +57,38 @@ https://github.com/orgs/OLXClone-SE/projects/1
 </ul>
 
 <br/>
+
+How to run the project :
+------------------------
+
+1. Pre-requisites
+    1. Yarn 
+    2. PostgresSql database
+    3. Go 
+    4. create-react-app
+    5. node
+    6. Browser
+
+2. Setting Up
+    1. Clone the project from github repo
+    2. run the command yarn (It will install all the dependencies)
+    3. locate the sql script file and create the tables using the script file.
+    4. create a .env file at server root and provide the following details.
+        dbhost
+        dbport
+        dbuname
+        dbpass
+        dbname
+        frommail
+        mailpassword
+        mailid
+        smtpserver
+        smtpsocket
+    5. go to the workspaces > server > then run go command (It will install the backend go dependencies.)
+    6. Now in order to run the application go to root folder of the project and run the command "yarn start", it will start both the server and the client.
+    7. The client will be available on http://localhost:3000 and the server will be available on http://localhost:4000
+    8. Several other customized commands are available to run individual modules in different modes, for those please refer to package.json > scripts.
+
+3. In order to use the application a user must create an account using a mail id. 
+    1. Signup using mail id and verify otp.
+    2. Once the otp is verified user can logon to the system and can access all the functionalities available in the system.
