@@ -2,3 +2,9 @@
     margin-top: 20px;
     max-width: 50%;
 }
+
+.upload{
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    transition: border-color .15s
+}

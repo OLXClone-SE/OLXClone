@@ -7,6 +7,7 @@ import { fetchUserProfile } from "../ReduxActions/UserProfileActions";
 import { useAppSelector } from "../Store/hooks";
 import { RootState } from "../Store/store";
 import { saveUserProduct } from "../ReduxActions/SellActions";
+import { uploadProductImage } from "../ReduxActions/UploadImageActions";
 import { categories } from "../Utils/CategoriesList";
 import { NavBarComponent } from "../NavBarComponent/NavBarComponent";
 import { useNavigate } from "react-router-dom";
@@ -53,7 +54,7 @@ export function SellComponent() {
             productname: event.target.name === "productname" ? event.target.value : product.productname,
             category: event.target.name === "category" ? event.target.options.selectedIndex : product.category,
             price: event.target.name === "price" ? +event.target.value : product.price,
-            path: "../images/product.jpg",
+            path: event.target.name === "path" ? "/uploads/" + event.target.files[0].name : "",
             description: event.target.name === "description" ? event.target.value : product.description,
             approved: false,
             phone,
@@ -63,6 +64,13 @@ export function SellComponent() {
         dispatch(updateProductDetails({ userProduct }))
     }
 
+    async function upload(event:any) 
+    {   let formData = new FormData();
+        event.target.name = "path"
+        handleChange(event);
+        formData.append("photo", event.target.files[0],event.target.files[0].name);
+        dispatch(uploadProductImage({formData:formData}));
+    }
     const handleSubmit = (e: any) => {
         e.preventDefault()
         dispatch(saveUserProduct({ ...product, phone, mailid, category: categories()[+product.category] }))
@@ -88,6 +96,12 @@ export function SellComponent() {
                     <div className="form-group">
                         <label>Price</label>
                         <input type="number" id="price" name="price" className="form-control" onChange={handleChange} required />
+                    </div>
+                    <br />
+                    <div className="form-group">
+                        <label>Add Product Image</label>
+                        <br/>
+                        <input type = "file" id="image-file" onChange={e=>upload(e)} className="upload" />
                     </div>
                     <br />
                     <div className="form-group">
