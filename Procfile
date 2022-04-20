@@ -1,1 +1,1 @@
-web: bin/olxclone
+web: yarn start
