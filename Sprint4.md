@@ -1,7 +1,7 @@
-
 <h1>Sprint Board</h1>
 
 <h3>Application Overview</h3>
+<br/>
 <hr/>
 
 OLX CLONE is the title of our application. 
@@ -36,3 +36,23 @@ Our application aims to replicate some of the features of the OLX CLONE applicat
 <li>Getting OTPs for different flows like forgetting a password, signing up, etc.</li>
 <br/>
 </ul>
+
+<br/>
+<h3>Link to API documentation<a>https://github.com/OLXClone-SE/OLXClone/blob/main/APIDocumentation.md</a></h3>
+
+<br/>
+
+<h3>Link to Sprint Board<a>https://github.com/orgs/OLXClone-SE/projects/1</a></h3>
+
+<br/>
+
+<h3> Team Members Details </h3>
+<br/>
+<ul>
+<li>Venkata Sai Samanth Kommi (BackEnd + FrontEnd)</li>
+<li>Satya Naga Akhilesh Irrinki (FrontEnd) </li>
+<li>JayaChandra Gunturu (FrontEnd) </li>
+<li>Venkata Maneesh Reddy Konkala (BackEnd) </li>
+</ul>
+
+<br/>
