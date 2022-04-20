@@ -6,6 +6,10 @@ import { categories } from "../Utils/CategoriesList";
 export function NavBarComponent() {
 
     const navigate = useNavigate();
+    const logout = () => {
+        document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        navigate("/");
+    }
     return <>
         <style type="text/css">
             {`
@@ -34,8 +38,7 @@ export function NavBarComponent() {
                     <Nav.Item>
                         <NavDropdown title="Profile" id="basic-nav-dropdown" className="justify-content-end">
                             <NavDropdown.Item onClick={() => navigate("/profile")}>Edit Profile</NavDropdown.Item>
-                            <NavDropdown.Item onClick={() => navigate("/home")}>Logout</NavDropdown.Item>
-                        </NavDropdown>
+                            <NavDropdown.Item onClick={() => logout()}>Logout</NavDropdown.Item>                        </NavDropdown>
                     </Nav.Item>
                 </Nav>
             </Container>
