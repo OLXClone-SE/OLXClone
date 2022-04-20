@@ -38,6 +38,10 @@ func SaveProductHandler(writer http.ResponseWriter, request *http.Request) {
 	utilities.ParseRequestBody(request, &reqBodyObject)
 	isSaved := saveProduct(reqBodyObject)
 	saveProResp := saveProductResponse(isSaved)
+	verify := utilities.VerifyCookie(writer, request)
+	if !verify {
+		saveProResp = utilities.ToJson(GetUserDetailsResponse{})
+	}
 	if saveProResp != nil {
 		utilities.WriteJsonResponse(writer, http.StatusOK, saveProResp)
 	}
