@@ -18,5 +18,6 @@ func (app *application) controller() *httprouter.Router {
 	router.HandlerFunc(http.MethodPost, paths.GET_USER_DETAILS, handlers.GetUserDetailsHandler)
 	router.HandlerFunc(http.MethodPost, paths.GET_PRODUCTS, handlers.GetProductsHandler)
 	router.HandlerFunc(http.MethodPost, paths.SAVE_PRODUCTS, handlers.SaveProductHandler)
+	router.HandlerFunc(http.MethodPost, paths.UPLOAD_IMAGES, handlers.GetImageUploadHandler)
 	return router
 }
