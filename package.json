@@ -21,7 +21,9 @@
         "fontawesome-free": "^1.0.4",
         "jest": "^27.5.1",
         "react-bootstrap": "^2.1.2",
+        "react-cookie": "^4.1.1",
         "react-fontawesome": "^1.7.1",
+        "workspace": "^0.0.1-preview.1",
         "yarn": "^1.22.17"
     }
 }

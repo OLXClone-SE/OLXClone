@@ -11,7 +11,7 @@ import { useDispatch } from "react-redux";
 import { fetchUserProfile, saveUserProfile } from "../ReduxActions/UserProfileActions";
 import { updateProfileDetails } from "../ReduxSlices/UserProfileSlice";
 import { UserProfile } from "../Types/user";
-
+import { useNavigate } from "react-router-dom";
 
 export function ProfileComponent() {
 
@@ -20,6 +20,11 @@ export function ProfileComponent() {
   const [profile, setProfile] = useState<UserProfile>({ fname: "", lname: "", phone: "", mailid: "" });
   const { products } = useAppSelector((root: RootState) => root.ProductSlice)
   const dispatch = useDispatch()
+  const navigate = useNavigate();
+  if (!document.cookie.split(";").find(row => row.startsWith('token='))?.length) {
+    console.log("poindhi");
+    navigate('/')
+  }
 
   useEffect(() => {
     if (mailid === "")
