@@ -192,6 +192,36 @@ JWT Implementation
 <br/>
 <br/>
 
+<h3> Test case for verfying login action </h3>
+<ul>
+    <li>The test case is written as verifyLogoutService. </li>
+    <li>In this test case the logout service is verified</li>
+    <li> It is verified that the user after logging out is redirected to login page as moving backward to other pages is restricted </li>
+    <li> The test case output result is as follows, </li>
+</ul>
+
+![tc1](https://user-images.githubusercontent.com/36855976/164376573-da4c0537-3848-4f81-8c8e-fa24e0cd9317.JPG)
+
+<h3> Test case for enabling user to enter details and submitting product for sale </h3>
+<ul>
+    <li>The test case is written as sellProductNavigation.spec</li>
+    <li>In this test case the sellProduct API is verified i.e. whether the user is able to enter the product that they are willing to sell.</li>
+    <li> It is verified that the user after filling out the fields like Product name, price, details, product image and clicking sell product the selling item is added to the user profile</li>
+    <li> The test case output result is as follows, </li>
+</ul>
+
+![tc2](https://user-images.githubusercontent.com/36855976/164376596-6128b07f-3cf2-4b24-b5ca-8ed92f679b30.JPG)
+
+<h3>Test case for testing as successfull Image upload</h3>
+<ul>
+    <li>The test case is written verifyUploadImageService.spec</li>
+    <li>In this test case the uploadImage API is verified i.e. whether the image given by the user is successfully uploaded or not.</li>
+    <li> It is verified that the user after selecting choose file and selecting a image the image is received by server and a response that the image is successfully uploaded is given out</li>
+    <li> The sample images is taken from the fixtures directory in the cypress folder.
+    <li> The test case output result is as follows, </li>
+</ul>
+
+![tc3](https://user-images.githubusercontent.com/36855976/164376613-7f27a5d9-e065-44ee-8609-7f5dbd9cee15.JPG)
 
 <h3> Team Members Details </h3>
 <hr/>
