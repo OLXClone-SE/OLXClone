@@ -36,6 +36,10 @@ Our application aims to replicate some of the features of the OLX CLONE applicat
 <br/>
 </ul>
 
+<h4>Application Demo Video</h4>
+
+https://user-images.githubusercontent.com/34389177/164353638-bc62c406-aec7-4438-bb5e-c4cca95a2073.mp4
+
 <br/>
 
 <h3>Link to API documentation:</h3>
