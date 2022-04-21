@@ -61,7 +61,7 @@ func GetImageUploadHandler(writer http.ResponseWriter, request *http.Request) {
 		writer.WriteHeader(http.StatusBadRequest)
 		return
 	}
-	err = os.MkdirAll("D:/UFL/Sem-2/SE/OLXClone/workspaces/server/uploads", os.ModePerm)
+	err = os.MkdirAll("../uploads", os.ModePerm)
 	if err != nil {
 		http.Error(writer, err.Error(), http.StatusInternalServerError)
 		return
