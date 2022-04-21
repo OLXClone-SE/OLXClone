@@ -118,14 +118,20 @@ JWT Implementation
 
 <p>After clicking on the logout button user will be redirected to the login page and the token at the client side will be invalidated.</p>
 
-Test Cases ::
 <hr/>
+<h3>Frontend cypress tests</h3>
 
-!!!!!!!!!!!!!!!! Fill for front end !!!!!!!!!!!!!!!!
+In this sprint we have added cypress tests for new functionalities like uploading images, logout functionality and added some more utility functions for generating more mock data for validating the service APIs. We have added some tests for existing functionalities as well. In total we have written 15 test cases that covers end to end functionality for all the functions in out application. We have attached the test case results as well as the recording of cypress tests we wrote in our application.
 
+<h4>Backend unit test video</h4>
 
 https://user-images.githubusercontent.com/34389177/164371155-9a16e661-1dc1-407c-8e54-39b8c29f5deb.mp4
 
+<h4>Frontend unit tests image</h4>
+
+![tc 1](https://user-images.githubusercontent.com/36855976/164371939-802a7cfa-424f-48c6-b130-a43c1e9eb51e.JPG)
+
+![tc2](https://user-images.githubusercontent.com/36855976/164371951-da5d25cb-2919-49e3-8d66-f9ccca3cba01.JPG)
 
 <h3>Backend unit tests</h3>
 
