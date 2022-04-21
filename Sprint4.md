@@ -121,10 +121,14 @@ JWT Implementation
 Test Cases ::
 <hr/>
 
-!!!!!!!!!!!!!!!! Fill for both backend and front end !!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!! Fill for front end !!!!!!!!!!!!!!!!
 <h4>Backend unit test video</h4>
 
 https://user-images.githubusercontent.com/34389177/164349891-e32797f6-6145-4d80-9944-90e955144b00.mp4
+
+<h4>Backend unit tests image</h4>
+
+<img width="419" alt="Screen Shot 2022-04-20 at 9 37 26 PM" src="https://user-images.githubusercontent.com/34389177/164354417-774c7666-d819-403d-a8c4-ee02cb26c159.png">
 
 API
 <hr/>
