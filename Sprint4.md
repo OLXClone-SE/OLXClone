@@ -202,6 +202,17 @@ JWT Implementation
 
 ![tc1](https://user-images.githubusercontent.com/36855976/164376573-da4c0537-3848-4f81-8c8e-fa24e0cd9317.JPG)
 
+<h3> Test case for navigating to sell products page</h3>
+<ul>
+    <li>The test case is written as sellProductNavigation.spec</li>
+    <li>In this test case the it is verified that the user is able to navigate to the sell products page after logging in.</li>
+    <li> It is verified that after successful login the user navigates to sell product page by clicking sell in the home page</li>
+    <li> The test case output result is as follows, </li>
+</ul>
+
+![tc4](https://user-images.githubusercontent.com/36855976/164377251-c31c0ff6-eb7c-43f8-81be-f4659072720c.JPG)
+
+
 <h3> Test case for enabling user to enter details and submitting product for sale </h3>
 <ul>
     <li>The test case is written as sellProductNavigation.spec</li>
