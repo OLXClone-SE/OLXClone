@@ -109,7 +109,7 @@ JWT Implementation
 
 <p>For every request that requires authorization front end will send a token to the backend and the backend will verify the token with secret hash value. A lot of effort is put on this feature both from the backend as well front end.
 
-Logout Functionality
+<h3>Logout Functionality</h3>
 <hr/>
 
 <p>After clicking on the logout button user will be redirected to the login page and the token at the client side will be invalidated.</p>
