@@ -15,10 +15,11 @@ Team Members :
 4. Jaya Chandra Gunturu--------------------------- JayachandraGunturu
 
 Roles:
-0. FullStack - Venkata Sai Samanth Kommi.
-1. BackEnd - Venkata Maneesh Reddy Konkala.
-2. FrontEnd- Satya Naga Akhilesh Irrinki, Jaya Chandra Gunturu.
-
+<hr/>
+0. FullStack - Venkata Sai Samanth Kommi. <br/>
+1. BackEnd - Venkata Maneesh Reddy Konkala.<br/>
+2. FrontEnd- Satya Naga Akhilesh Irrinki, Jaya Chandra Gunturu.<br/>
+<br/>
 Goal :
 
 To create a web application with the following features :
