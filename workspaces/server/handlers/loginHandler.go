@@ -48,7 +48,7 @@ func LoginHandler(writer http.ResponseWriter, request *http.Request) {
 	success := verifyUser(reqBodyObject)
 	loginResponse := createLoginResponse(success)
 	if success {
-		expirationTime := time.Now().Add(1 * time.Minute)
+		expirationTime := time.Now().Add(30 * time.Minute)
 		tk := Token{
 			Mailid: reqBodyObject.Mailid,
 			StandardClaims: &jwt.StandardClaims{
