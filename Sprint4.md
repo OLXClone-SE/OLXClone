@@ -37,7 +37,9 @@ Our application aims to replicate some of the features of the OLX CLONE applicat
 <br/>
 </ul>
 
-<br/>Link to API documentation:
+<br/>
+
+<b>Link to API documentation:</b>
 https://github.com/OLXClone-SE/OLXClone/blob/main/APIDocumentation.md
 
 <br/>
