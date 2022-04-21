@@ -1,4 +1,3 @@
-<h1>Sprint Board</h1>
 
 <h3>Application Overview</h3>
 <hr/>
@@ -36,37 +35,8 @@ Our application aims to replicate some of the features of the OLX CLONE applicat
 <br/>
 </ul>
 
-<h4>Application Demo Video</h4>
-
-https://user-images.githubusercontent.com/34389177/164353638-bc62c406-aec7-4438-bb5e-c4cca95a2073.mp4
-
-<br/>
-
-<h3>Link to API documentation:</h3>
+<h3>How to run the project :</h3>
 <hr/>
-https://github.com/OLXClone-SE/OLXClone/blob/main/APIDocumentation.md
-
-<br/>
-
-<h3>Link to Sprint Board:</h3>
-<hr/>
-https://github.com/orgs/OLXClone-SE/projects/1
-
-<br/>
-
-<h3> Team Members Details </h3>
-<hr/>
-<ul>
-<li>Venkata Sai Samanth Kommi (BackEnd + FrontEnd)</li>
-<li>Satya Naga Akhilesh Irrinki (FrontEnd) </li>
-<li>JayaChandra Gunturu (FrontEnd) </li>
-<li>Venkata Maneesh Reddy Konkala (BackEnd) </li>
-</ul>
-
-<br/>
-
-How to run the project :
-------------------------
 
 1. Pre-requisites
     1. Yarn 
@@ -80,17 +50,17 @@ How to run the project :
     1. Clone the project from github repo
     2. run the command yarn (It will install all the dependencies)
     3. locate the sql script file and create the tables using the script file.
-    4. create a .env file at server root and provide the following details.
-        dbhost
-        dbport
-        dbuname
-        dbpass
-        dbname
-        frommail
-        mailpassword
-        mailid
-        smtpserver
-        smtpsocket
+    4. create a .env file at server root and provide the following details:
+        dbhost,
+        dbport,
+        dbuname,
+        dbpass,
+        dbname,
+        frommail,
+        mailpassword,
+        mailid,
+        smtpserver,
+        smtpsocket.
     5. go to the workspaces > server > then run go command (It will install the backend go dependencies.)
     6. Now in order to run the application go to root folder of the project and run the command "yarn start", it will start both the server and the client.
     7. The client will be available on http://localhost:3000 and the server will be available on http://localhost:4000
@@ -100,6 +70,52 @@ How to run the project :
     1. Signup using mail id and verify otp.
     2. Once the otp is verified user can logon to the system and can access all the functionalities available in the system.
 
+<h3>Application Demo Video</h3>
+
+https://user-images.githubusercontent.com/34389177/164353638-bc62c406-aec7-4438-bb5e-c4cca95a2073.mp4
+
+
+<h3>Frontend cypress tests</h3>
+<hr/>
+
+In this sprint we have added cypress tests for new functionalities like uploading images, logout functionality and added some more utility functions for generating more mock data for validating the service APIs. We have added some tests for existing functionalities as well. In total we have written 15 test cases that covers end to end functionality for all the functions in out application. We have attached the test case results as well as the recording of cypress tests we wrote in our application.
+
+<h4>Frontend Cypress test video</h4>
+
+https://user-images.githubusercontent.com/34389177/164371155-9a16e661-1dc1-407c-8e54-39b8c29f5deb.mp4
+
+<h4>Frontend unit tests image</h4>
+
+![tc 1](https://user-images.githubusercontent.com/36855976/164371939-802a7cfa-424f-48c6-b130-a43c1e9eb51e.JPG)
+
+![tc2](https://user-images.githubusercontent.com/36855976/164371951-da5d25cb-2919-49e3-8d66-f9ccca3cba01.JPG)
+
+<br/>
+
+<h3>Backend unit tests</h3>
+<hr/>
+
+In this sprint we have added unit tests for all the api handlers and other utility functions we used in our project. Unit tests were written considering every possible flow of the application and all the flows were covered through the unit tests. In total we have written 20 unit tests that checks all possible flows for all functions used in our application. The below attachments are the recording and snapshot of the unit tests we wrote in our application.
+
+<h4>Backend unit test video</h4>
+
+https://user-images.githubusercontent.com/34389177/164349891-e32797f6-6145-4d80-9944-90e955144b00.mp4
+
+<h4>Backend unit tests image</h4>
+
+<img width="419" alt="Screen Shot 2022-04-20 at 9 37 26 PM" src="https://user-images.githubusercontent.com/34389177/164354417-774c7666-d819-403d-a8c4-ee02cb26c159.png">
+
+<h3>Link to API documentation:</h3>
+<hr/>
+https://github.com/OLXClone-SE/OLXClone/blob/main/APIDocumentation.md
+
+<br/>
+
+<h3>Link to Sprint/Project Board:</h3>
+<hr/>
+https://github.com/orgs/OLXClone-SE/projects/1
+
+<br/>
 
 <h3>Sprint 4 Deliverables</h3>
 <hr/>
@@ -118,34 +134,9 @@ JWT Implementation
 
 <p>After clicking on the logout button user will be redirected to the login page and the token at the client side will be invalidated.</p>
 
-<hr/>
-<h3>Frontend cypress tests</h3>
 
-In this sprint we have added cypress tests for new functionalities like uploading images, logout functionality and added some more utility functions for generating more mock data for validating the service APIs. We have added some tests for existing functionalities as well. In total we have written 15 test cases that covers end to end functionality for all the functions in out application. We have attached the test case results as well as the recording of cypress tests we wrote in our application.
 
-<h4>Backend unit test video</h4>
-
-https://user-images.githubusercontent.com/34389177/164371155-9a16e661-1dc1-407c-8e54-39b8c29f5deb.mp4
-
-<h4>Frontend unit tests image</h4>
-
-![tc 1](https://user-images.githubusercontent.com/36855976/164371939-802a7cfa-424f-48c6-b130-a43c1e9eb51e.JPG)
-
-![tc2](https://user-images.githubusercontent.com/36855976/164371951-da5d25cb-2919-49e3-8d66-f9ccca3cba01.JPG)
-
-<h3>Backend unit tests</h3>
-
-In this sprint we have added unit tests for all the api handlers and other utility functions we used in our project. Unit tests were written considering every possible flow of the application and all the flows were covered through the unit tests. In total we have written 20 unit tests that checks all possible flows for all functions used in our application. The below attachments are the recording and snapshot of the unit tests we wrote in our application.
-
-<h4>Backend unit test video</h4>
-
-https://user-images.githubusercontent.com/34389177/164349891-e32797f6-6145-4d80-9944-90e955144b00.mp4
-
-<h4>Backend unit tests image</h4>
-
-<img width="419" alt="Screen Shot 2022-04-20 at 9 37 26 PM" src="https://user-images.githubusercontent.com/34389177/164354417-774c7666-d819-403d-a8c4-ee02cb26c159.png">
-
-Image uploading funcitonality
+<h3>Image uploading funcitonality</h3>
 <hr/>
     <ul>
     <li>If the logged in user wants to sell a product he can use the sell option and fill out a form containing details of the product. This api will save the image of the product specified by the user. The id of the product is automatically gets generated by the database. THe below URL is hit with the image of the product the uesr wants to sell. We have set such that the user can only upload one image per product.
@@ -200,4 +191,17 @@ Image uploading funcitonality
 | approved | This indicates whether the image is successfully uploaded or not  | string |
 <br/>
 <br/>
+
+
+<h3> Team Members Details </h3>
+<hr/>
+<ul>
+<li>Venkata Sai Samanth Kommi (BackEnd + FrontEnd)</li>
+<li>Satya Naga Akhilesh Irrinki (FrontEnd) </li>
+<li>JayaChandra Gunturu (FrontEnd) </li>
+<li>Venkata Maneesh Reddy Konkala (BackEnd) </li>
+</ul>
+
+<br/>
+
 <hr/>
