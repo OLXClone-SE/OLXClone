@@ -123,6 +123,10 @@ Test Cases ::
 
 !!!!!!!!!!!!!!!! Fill for front end !!!!!!!!!!!!!!!!
 
+
+https://user-images.githubusercontent.com/34389177/164371155-9a16e661-1dc1-407c-8e54-39b8c29f5deb.mp4
+
+
 <h3>Backend unit tests</h3>
 
 In this sprint we have added unit tests for all the api handlers and other utility functions we used in our project. Unit tests were written considering every possible flow of the application and all the flows were covered through the unit tests. In total we have written 20 unit tests that checks all possible flows for all functions used in our application. The below attachments are the recording and snapshot of the unit tests we wrote in our application.
