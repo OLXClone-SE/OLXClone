@@ -15,7 +15,8 @@ Team Members :
 4. Jaya Chandra Gunturu--------------------------- JayachandraGunturu
 
 Roles:
-1. BackEnd - Venkata Sai Samanth Kommi, Venkata Maneesh Reddy Konkala.
+0. FullStack - Venkata Sai Samanth Kommi.
+1. BackEnd - Venkata Maneesh Reddy Konkala.
 2. FrontEnd- Satya Naga Akhilesh Irrinki, Jaya Chandra Gunturu.
 
 Goal :
