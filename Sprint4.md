@@ -1,7 +1,6 @@
 <h1>Sprint Board</h1>
 
 <h3>Application Overview</h3>
-<br/>
 <hr/>
 
 OLX CLONE is the title of our application. 
@@ -39,18 +38,20 @@ Our application aims to replicate some of the features of the OLX CLONE applicat
 
 <br/>
 
-<b>Link to API documentation:</b>
+<h3>Link to API documentation:</h3>
+<hr/>
 https://github.com/OLXClone-SE/OLXClone/blob/main/APIDocumentation.md
 
 <br/>
 
-Link to Sprint Board: 
+<h3>Link to Sprint Board:</h3>
+<hr/>
 https://github.com/orgs/OLXClone-SE/projects/1
 
 <br/>
 
 <h3> Team Members Details </h3>
-<br/>
+<hr/>
 <ul>
 <li>Venkata Sai Samanth Kommi (BackEnd + FrontEnd)</li>
 <li>Satya Naga Akhilesh Irrinki (FrontEnd) </li>
@@ -95,9 +96,9 @@ How to run the project :
     1. Signup using mail id and verify otp.
     2. Once the otp is verified user can logon to the system and can access all the functionalities available in the system.
 
-<br/>
 
 <h3>Sprint 4 Deliverables</h3>
+<hr/>
 
 JWT Implementation
 --------------------
@@ -109,22 +110,21 @@ JWT Implementation
 <p>For every request that requires authorization front end will send a token to the backend and the backend will verify the token with secret hash value. A lot of effort is put on this feature both from the backend as well front end.
 
 Logout Functionality
---------------------
+<hr/>
 
 <p>After clicking on the logout button user will be redirected to the login page and the token at the client side will be invalidated.</p>
 
 Test Cases ::
-
---------------
+<hr/>
 
 !!!!!!!!!!!!!!!! Fill for both backend and front end !!!!!!!!!!!!!!!!
 
 API
----
+<hr/>
 !!!!!!!!!!!!!!!! Jayachandra !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 For format refer to api documentation.md
 
 Image Upload Front end 
-----------------------
+<hr/>
 
 !!!!!!!!!!!!!!!! Jayachandra !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
