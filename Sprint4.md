@@ -192,7 +192,7 @@ JWT Implementation
 <br/>
 <br/>
 
-<h3> Test case for verfying login action </h3>
+<h3> Test case for verfying logout action </h3>
 <ul>
     <li>The test case is written as verifyLogoutService. </li>
     <li>In this test case the logout service is verified</li>
