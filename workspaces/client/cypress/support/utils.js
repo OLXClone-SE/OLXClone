@@ -16,6 +16,15 @@ function genereatePhoneNumber(i){
     return num;
 }
 
+function generatePrice(){
+    var num = "";
+    var numbers = "1234567890";
+    for(var j = 0; j < 4; j++){
+        num += numbers.charAt(Math.floor(Math.random()*numbers.length));
+    }
+    return num;
+}
+
 function generatePassword(){
     var text = "";
     var upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -40,4 +49,4 @@ function generateOTP(i){
     return num;
 }
 
-export default {generateName,generatePassword,genereatePhoneNumber,generateOTP}
+export default {generateName,generatePassword,genereatePhoneNumber,generateOTP,generatePrice}
