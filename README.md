@@ -1,4 +1,3 @@
-
 <h3>Application Overview</h3>
 <hr/>
 
